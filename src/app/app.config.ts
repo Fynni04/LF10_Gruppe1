@@ -30,9 +30,9 @@ function initializeApp(keycloak: KeycloakService): () => Promise<boolean> {
 export const initializeKeycloak = (keycloak: KeycloakService) => async () =>
   keycloak.init({
     config: {
-      url: 'KEYCLOAK_URL',
-      realm: 'REALM',
-      clientId: 'CLIENT_ID',
+      url: 'https://keycloak.szut.dev/auth',
+      realm: 'szut',
+      clientId: 'employee-management-service-frontend',
     },
     loadUserProfileAtStartUp: true,
     initOptions: {

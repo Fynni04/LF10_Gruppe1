@@ -1,0 +1,8 @@
+{
+  "realm": "your-realm",
+  "auth-server-url": "https://keycloak.szut.dev/auth",
+  "ssl-required": "none",
+  "resource": "employee-management-service-frontend",
+  "public-client": true,
+  "confidential-port": 0
+}
