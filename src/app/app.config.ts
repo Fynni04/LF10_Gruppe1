@@ -1,14 +1,20 @@
-import {APP_INITIALIZER, ApplicationConfig} from '@angular/core';
+import {APP_INITIALIZER, ApplicationConfig, NgModule} from '@angular/core';
 import {provideRouter} from '@angular/router';
 
 import {routes} from './app.routes';
 import {HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi} from "@angular/common/http";
-import {KeycloakAngularModule, KeycloakBearerInterceptor, KeycloakService} from "keycloak-angular";
+import {
+  includeBearerTokenInterceptor,
+  KeycloakAngularModule,
+  KeycloakBearerInterceptor,
+  KeycloakService
+} from "keycloak-angular";
 
 export const appConfig: ApplicationConfig = {
 
-  providers: [provideRouter(routes), provideHttpClient(withInterceptorsFromDi()), KeycloakAngularModule,
-    {
+  providers: [provideRouter(routes), provideHttpClient(withInterceptorsFromDi()), provideHttpClient(),
+    KeycloakAngularModule,
+    { //for KeyCloak
       provide: APP_INITIALIZER,
       useFactory: initializeApp,
       multi: true,
@@ -20,7 +26,13 @@ export const appConfig: ApplicationConfig = {
       provide: HTTP_INTERCEPTORS,
       useClass: KeycloakBearerInterceptor,
       multi: true
-    }]
+    },
+    { //for BearerToken
+      provide: HTTP_INTERCEPTORS,
+      useClass: KeycloakBearerInterceptor,
+      multi: true
+    }
+  ]
 };
 
 function initializeApp(keycloak: KeycloakService): () => Promise<boolean> {
@@ -34,12 +46,13 @@ export const initializeKeycloak = (keycloak: KeycloakService) => async () =>
       realm: 'szut',
       clientId: 'employee-management-service-frontend',
     },
-    loadUserProfileAtStartUp: true,
     initOptions: {
-      onLoad: 'check-sso',
-      silentCheckSsoRedirectUri:
-        window.location.origin + '/silent-check-sso.html',
+      onLoad: 'login-required',
       checkLoginIframe: false,
-      redirectUri: 'http://localhost:4200',
     },
-  });
+    enableBearerInterceptor: true,
+    bearerPrefix: 'Bearer',
+    bearerExcludedUrls: [],
+  })
+
+;
