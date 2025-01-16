@@ -5,11 +5,10 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Employee} from "../Employee";
 
 @Component({
-  selector: 'app-employee-list',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './employee-list.component.html',
-  styleUrl: './employee-list.component.css'
+    selector: 'app-employee-list',
+    imports: [CommonModule],
+    templateUrl: './employee-list.component.html',
+    styleUrl: './employee-list.component.css'
 })
 export class EmployeeListComponent {
   employees$: Observable<Employee[]>;
