@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders, HttpResponse} from "@angular/common/http";
-import {map, Observable, of} from "rxjs";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {catchError, map, Observable} from "rxjs";
 import {Employee} from "../models/Employee";
 import {EmployeeCreateDto} from "../models/EmployeeCreateDto";
 
@@ -32,32 +32,31 @@ export class EmployeeService {
       }));
   }
 
-  insert(employee: EmployeeCreateDto): Observable<Employee> {
-    return this.http.post<Employee>(this.url, employee, {
-      headers: new HttpHeaders()
-        .set('Content-Type', 'application/json')
-    });
+  insert(employee: EmployeeCreateDto) {
+    let sub = this.http.post<Employee>(this.url, employee).subscribe();
+    //sub.unsubscribe();
   }
 
-  update(employee: Employee): Observable<Employee> {
-    //Where should Verification happens?
+  update(employee: Employee) {
     let postUrl = `${this.url}/${employee.id}`;
-    return this.http.put(postUrl, employee, {
-      headers: new HttpHeaders()
-        .set('Content-Type', 'application/json')
-    });
+    let subscription = this.http.put(postUrl, employee).pipe(
+      catchError((error) => {
+        console.error('update failed:', error); // Log the error
+        throw new Error(`Failed to update resource with ID ${employee.id}`);
+      })
+    ).subscribe()
+    //subscription.unsubscribe();
   }
 
   delete(id: number) {
     const deleteUrl = `${this.url}/${id}`;
-    this.http.delete(deleteUrl).subscribe({
-      next: (response) => {
-        console.log('Delete successful');
-      },
-      error: (err) => {
-        console.error('Error deleting employee:', err.message);
-      },
-    });
+    let subscription = this.http.delete(deleteUrl).pipe(
+      catchError((error) => {
+        console.error('Delete failed:', error); // Log the error
+        throw new Error(`Failed to delete resource with ID ${id}`);
+      })
+    ).subscribe();
+    //subscription.unsubscribe();
   }
 
 }
