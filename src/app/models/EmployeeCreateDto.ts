@@ -1,5 +1,5 @@
-export class Employee {
-  constructor(public id?: number,
+export class EmployeeCreateDto {
+  constructor(
               public lastName?: string,
               public firstName?: string,
               public street?: string,
