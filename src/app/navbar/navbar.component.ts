@@ -1,18 +1,23 @@
 import { Component } from '@angular/core';
 
+enum Domain{
+  employee = 'Employee',
+  qualification = 'Qualification'
+}
 
 @Component({
-    selector: 'app-navbar',
-    imports: [],
-    templateUrl: './navbar.component.html',
-    styleUrl: './navbar.component.css'
+  selector: 'app-navbar',
+  imports: [],
+  templateUrl: './navbar.component.html',
+  styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
-  active:String = 'employee';
+  domains = Domain;
+  active:Domain = this.domains.employee;
+  logoutIcon:String = 'assets/logout.png';
 
-  setActive(navbarItem: String){
+  setActive(navbarItem: Domain){
     this.active = navbarItem;
   }
-
 
 }
