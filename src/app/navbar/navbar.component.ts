@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 
+
 @Component({
     selector: 'app-navbar',
     imports: [],
@@ -7,5 +8,11 @@ import { Component } from '@angular/core';
     styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
+  active:String = 'employee';
+
+  setActive(navbarItem: String){
+    this.active = navbarItem;
+  }
+
 
 }
