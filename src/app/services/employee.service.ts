@@ -1,59 +1,71 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {catchError, map, Observable} from "rxjs";
+import {HttpClient} from "@angular/common/http";
+import {catchError, Observable, take} from "rxjs";
 import {Employee} from "../models/Employee";
 import {EmployeeCreateDto} from "../models/EmployeeCreateDto";
+import {AppGlobals} from "../app.globals";
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 export class EmployeeService {
 
-    private url = 'http://localhost:8089/employees'; // Example API URL
+  private url = AppGlobals.EMPLOYEES_MANAGER_BASE_URL + '/employees';
 
-    constructor(private http: HttpClient) {
-    }
+  constructor(private http: HttpClient) {
+  }
 
-    selectAll(): Observable<Employee[]> {
-        return this.http.get<Employee[]>(this.url, {
-            headers: new HttpHeaders()
-                .set('Content-Type', 'application/json')
-        });
-    }
+  selectAll(): Observable<Employee[]> {
+    return this.http.get<Employee[]>(this.url).pipe(
+      take(1),
+      catchError(error => {
+          console.error(error);
+          throw new Error(error);
+        }
+      ));
+  }
 
-    select(id: number): Observable<Employee> {
-        return this.selectAll()
-            .pipe(map(employees => {
-                const employee = employees.find(employee => employee.id === id);
-                if (!employee) {
-                    throw new Error(`Employee with ID ${id} not found`);
-                }
-                return employee;
-            }));
-    }
+  select(id: number): Observable<Employee> {
+    let getUrl = `${this.url}/${id}`;
+    return this.http.get<Employee>(getUrl).pipe(
+      take(1),
+      catchError(error => {
+          console.error(error);
+          throw new Error(error);
+        }
+      ));
+  }
 
-    insert(employee: EmployeeCreateDto) {
-        let subscription = this.http.post<Employee>(this.url, employee).subscribe();
-    }
+  insert(employee: EmployeeCreateDto): Observable<Employee> {
+    return this.http.post<Employee>(this.url, employee).pipe(
+      take(1),
+      catchError(error => {
+          console.error(error);
+          throw new Error(error);
+        }
+      ));
+  }
 
-    update(employee: Employee) {
-        let postUrl = `${this.url}/${employee.id}`;
-        let subscription = this.http.put(postUrl, employee).pipe(
-            catchError((error) => {
-                console.error('update failed:', error); // Log the error
-                throw new Error(`Failed to update resource with ID ${employee.id}`);
-            })
-        ).subscribe();
-    }
+  update(employee: Employee): Observable<Employee> {
+    let postUrl = `${this.url}/${employee.id}`;
+    return this.http.put(postUrl, employee).pipe(
+      take(1),
+      catchError(error => {
+          console.error(error);
+          throw new Error(error);
+        }
+      ));
+  }
 
-    delete(id: number) {
-        const deleteUrl = `${this.url}/${id}`;
-        let subscription = this.http.delete(deleteUrl).pipe(
-            catchError((error) => {
-                console.error('Delete failed:', error); // Log the error
-                throw new Error(`Failed to delete resource with ID ${id}`);
-            })
-        ).subscribe();
-    }
+  delete(id: number): Observable<Employee> {
+    const deleteUrl = `${this.url}/${id}`;
+    return this.http.delete(deleteUrl).pipe(
+      take(1),
+      catchError(error => {
+          console.error(error);
+          throw new Error(error);
+        }
+      ));
+  }
 
 }
