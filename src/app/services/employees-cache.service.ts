@@ -1,4 +1,4 @@
-import {Injectable, signal, WritableSignal} from '@angular/core';
+import {Injectable, OnDestroy, signal, WritableSignal} from '@angular/core';
 import {EmployeeService} from "./employee.service";
 import {Employee} from "../models/Employee";
 import {Observable, Subscription} from "rxjs";
@@ -6,7 +6,7 @@ import {Observable, Subscription} from "rxjs";
 @Injectable({
   providedIn: 'root'
 })
-export class EmployeesCacheService {
+export class EmployeesCacheService implements OnDestroy {
   private cache: WritableSignal<Employee[]> = signal<Employee[]>([]);
   private subscriptions: Subscription[] = [];
 
@@ -53,7 +53,7 @@ export class EmployeesCacheService {
   }
 
   update(employee: Employee) {
-    const result$: Observable<Employee>  = this.employeeService.update(employee);
+    const result$: Observable<Employee> = this.employeeService.update(employee);
     const subscription: Subscription = result$.subscribe(
       (updatedEmployee: Employee) => {
         this.cache.update(data => {
@@ -67,7 +67,7 @@ export class EmployeesCacheService {
   }
 
   delete(id: number) {
-    const subscription : Subscription = this.employeeService.delete(id).subscribe();
+    const subscription: Subscription = this.employeeService.delete(id).subscribe();
     this.cache.update(employees => employees.filter(employee => employee.id !== id));
     this.subscriptions.push(subscription);
   }
