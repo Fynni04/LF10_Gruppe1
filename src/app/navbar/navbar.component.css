@@ -1,0 +1,20 @@
+.nav-text{
+  font-size: 40px;
+  margin-top: 20px;
+  margin-left: 20px;
+  font-weight: 200;
+}
+
+.active-nav-text{
+  color: var(--ci_color);
+  font-weight: bold;
+}
+
+.line_seperator{
+  height: 2px;
+  border: black;
+  color: black;
+  background-color: black;
+  margin-bottom: 50px;
+  margin-top: 0px;
+}

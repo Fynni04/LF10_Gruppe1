@@ -7,11 +7,10 @@ import {EmployeeService} from "../services/employee.service";
 import {EmployeeCreateDto} from "../models/EmployeeCreateDto";
 
 @Component({
-  selector: 'app-employee-list',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './employee-list.component.html',
-  styleUrl: './employee-list.component.css'
+    selector: 'app-employee-list',
+    imports: [CommonModule],
+    templateUrl: './employee-list.component.html',
+    styleUrl: './employee-list.component.css'
 })
 export class EmployeeListComponent {
   employees$: Observable<Employee[]>;

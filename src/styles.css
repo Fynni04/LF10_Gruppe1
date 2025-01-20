@@ -1,1 +1,9 @@
+
+:root{
+  --ci_color: #4C7DE7;
+}
+
+.ci_font_color{
+  color: var(--ci_color);
+}
 /* You can add global styles to this file, and also import other style files */
