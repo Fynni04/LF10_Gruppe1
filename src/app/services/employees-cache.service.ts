@@ -53,7 +53,7 @@ export class EmployeesCacheService {
   }
 
   update(employee: Employee) {
-    const result$: Observable<Employee> = this.employeeService.update(employee);
+    const result$: Observable<Employee>  = this.employeeService.update(employee);
     const subscription: Subscription = result$.subscribe(
       (updatedEmployee: Employee) => {
         this.cache.update(data => {

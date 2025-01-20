@@ -1,23 +1,23 @@
-import {Component} from '@angular/core';
+import {Component, signal, WritableSignal} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {map, Observable, of} from "rxjs";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
 import {Employee} from "../models/Employee";
 import {EmployeeService} from "../services/employee.service";
-import {EmployeeCreateDto} from "../models/EmployeeCreateDto";
+import {EmployeesCacheService} from "../services/employees-cache.service";
 
 @Component({
-    selector: 'app-employee-list',
-    imports: [CommonModule],
-    templateUrl: './employee-list.component.html',
-    styleUrl: './employee-list.component.css'
+  selector: 'app-employee-list',
+  imports: [CommonModule],
+  templateUrl: './employee-list.component.html',
+  styleUrl: './employee-list.component.css'
 })
 export class EmployeeListComponent {
-  employees$: Observable<Employee[]>;
+  employees: WritableSignal<Employee[]> = signal([]);
   employee?: Employee;
 
-  constructor(private http: HttpClient, private service: EmployeeService) {
-    this.employees$ = service.selectAll();
+  constructor(private http: HttpClient, private service: EmployeeService, private employeeCache: EmployeesCacheService) {
+    employeeCache.refresh();
+    this.employees = this.employeeCache.read();
   }
 
 }
