@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { QualificationListComponent } from './qualification-list.component';
+import { QualificationEditComponent } from './qualification-edit.component';
 
 describe('QualificationListComponent', () => {
-  let component: QualificationListComponent;
-  let fixture: ComponentFixture<QualificationListComponent>;
+  let component: QualificationEditComponent;
+  let fixture: ComponentFixture<QualificationEditComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [QualificationListComponent]
+      imports: [QualificationEditComponent]
     })
       .compileComponents();
 
-    fixture = TestBed.createComponent(QualificationListComponent);
+    fixture = TestBed.createComponent(QualificationEditComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
