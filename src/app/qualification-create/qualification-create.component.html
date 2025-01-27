@@ -1,0 +1,30 @@
+<div class="container">
+  <h1>Qualifikation Erstellen</h1>
+
+
+  <div class="form-group">
+    <label for="qualifikation">Qualifikation:</label>
+    <input
+      type="text"
+      id="qualifikation"
+      class="form-control"
+      placeholder="Neue Qualifikation eingeben"
+      [(ngModel)]="newqualification">
+  </div>
+
+  <div class="form-group">
+    <label for="mitarbeiter">Mitarbeiter:</label>
+    <div id="mitarbeiter" class="list-container">
+      <ul>
+        <li *ngFor="let employee of EmployeeListComponent">
+          <input type="checkbox" [value]="employee.id"> {{ employee.name }}
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="button-group">
+    <button class="btn btn-primary" (click)="addqualification()">Erstellen</button>
+    <button class="btn btn-secondary" (click)="cancel()">Abbrechen</button>
+  </div>
+</div>
