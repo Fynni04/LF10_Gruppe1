@@ -40,11 +40,8 @@ import {Router, RouterLink, RouterOutlet} from '@angular/router';  // Only need 
   imports: [
     CommonModule,
     RouterOutlet, // Just this one for displaying routed components
-    EmployeeListComponent,
-    QualificationEditComponent,
-    CreateEmployeesComponent,
     MenuComponent,
-    RouterLink
+    RouterLink,
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
