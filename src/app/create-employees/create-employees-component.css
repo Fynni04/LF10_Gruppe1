@@ -1,0 +1,129 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: gray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.heading {
+  font-size: 24px; /* Schriftgröße auf 36 Pixel setzen */
+  font-weight: bold; /* Fettgedruckt */
+  text-align: center; /* Text zentrieren */
+}
+
+.employee-form {
+  background-color: #d3d3d3;
+  border: 1px solid #b0b0b0;
+  border-radius: 8px;
+  width: 400px;
+  padding: 20px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.employee-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 36px; /* Schrift größer */
+  font-weight: bold; /* Fettgedruckt */
+}
+
+.form-section {
+  margin-bottom: 10px;
+}
+
+.form-section label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.form-section input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.qualifications-section {
+  width: 100%;
+  margin-top: 0px;
+}
+
+.qualifications-section h3 {
+  margin-bottom: 5px;
+}
+
+.qualifications-section input {
+  width: 70%;
+  padding: 8px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+
+.qualifications-section ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.qualifications-section li {
+  margin-bottom: 5px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.cancel-btn,
+.save-btn {
+  background-color: #ccc;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.save-btn {
+  background-color: #4caf50;
+  color: white;
+}
+
+.cancel-btn:hover,
+.save-btn:hover {
+  opacity: 0.8;
+}
+
+.qualification-input-container {
+  display: flex; /* Align items in a row */
+  gap: 10px; /* Space between the input and button */
+}
+
+.qualification-input-container input[type="text"] {
+  flex: 1; /* Take up available space */
+  padding: 8px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.add-qualification-btn {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 2px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.add-qualification-btn:hover {
+  opacity: 0.8;
+}
