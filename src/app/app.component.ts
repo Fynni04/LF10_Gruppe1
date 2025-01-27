@@ -9,9 +9,9 @@ import {QualificationEditComponent} from "./qualification-edit/qualification-edi
 
 @Component({
   selector: 'app-root',
-  standalone: true,
   imports: [CommonModule, EmployeeListComponent, EmployeeEditComponent, QualificationListComponent, QualificationCreateComponent],
   templateUrl: './app.component.html',
+  standalone: true,
   styleUrl: './app.component.css'
 })
 export class AppComponent {

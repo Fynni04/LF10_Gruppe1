@@ -6,9 +6,9 @@ import {Qualification} from "../Qualification";
 
 @Component({
   selector: 'app-qualification-list',
-  standalone: true,
   imports: [CommonModule],
   templateUrl: './qualification-list.component.html',
+  standalone: true,
   styleUrl: './qualification-list.component.css'
 })
 export class QualificationListComponent {

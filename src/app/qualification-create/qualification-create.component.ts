@@ -9,10 +9,11 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 @Component({
   selector: 'app-qualification-create',
-  standalone: true,
   imports: [
-    FormsModule],
+    FormsModule
+  ],
   templateUrl: './qualification-create.component.html',
+  standalone: true,
   styleUrl: './qualification-create.component.css'
 })
 export class QualificationCreateComponent {

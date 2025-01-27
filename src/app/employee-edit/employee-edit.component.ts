@@ -6,9 +6,9 @@ import {Employee} from "../Employee";
 
 @Component({
   selector: 'app-employee-edit',
-  standalone: true,
   imports: [CommonModule],
   templateUrl: './employee-edit.component.html',
+  standalone: true,
   styleUrl: './employee-edit.component.css'
 })
 export class EmployeeEditComponent {
