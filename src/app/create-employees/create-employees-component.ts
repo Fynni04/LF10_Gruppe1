@@ -6,11 +6,10 @@ import {FormsModule} from "@angular/forms";
 import {Qualification} from "../Qualification";
 
 @Component({
-  selector: 'create-employees',
-  standalone: true,
-  imports: [CommonModule, FormsModule],
-  templateUrl: './create-employees-component.html',
-  styleUrl: './create-employees-component.css'
+    selector: 'create-employees',
+    imports: [CommonModule, FormsModule],
+    templateUrl: './create-employees-component.html',
+    styleUrl: './create-employees-component.css'
 })
 
 export class CreateEmployeesComponent {
