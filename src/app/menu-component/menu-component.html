@@ -2,8 +2,8 @@
   <button *ngIf="!authenticated" (click)="login()">Login</button>
   <button *ngIf="authenticated" (click)="logout()">Logout</button>
 
-  <!-- Buttons visible only when authenticated -->
-  <button *ngIf="authenticated" (click)="onCreateEmployeeClick()">Create Employee</button>
+  <!-- Buttons are visible only when you're authenticated -->
+  <button *ngIf="authenticated" routerLink="/create-employees">Create Employee</button>
   <button *ngIf="authenticated" routerLink="/app-employee-list">View Employees</button>
   <button *ngIf="authenticated" routerLink="/app-qualification-edit">Manage Qualifications</button>
 </div>

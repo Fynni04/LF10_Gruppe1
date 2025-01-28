@@ -9,9 +9,9 @@ body {
 }
 
 .heading {
-  font-size: 24px; /* Schriftgröße auf 36 Pixel setzen */
-  font-weight: bold; /* Fettgedruckt */
-  text-align: center; /* Text zentrieren */
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
 }
 
 .employee-form {
@@ -26,8 +26,8 @@ body {
 .employee-form h2 {
   text-align: center;
   margin-bottom: 20px;
-  font-size: 36px; /* Schrift größer */
-  font-weight: bold; /* Fettgedruckt */
+  font-size: 36px;
+  font-weight: bold;
 }
 
 .form-section {
@@ -102,12 +102,12 @@ body {
 }
 
 .qualification-input-container {
-  display: flex; /* Align items in a row */
-  gap: 10px; /* Space between the input and button */
+  display: flex;
+  gap: 10px;
 }
 
 .qualification-input-container input[type="text"] {
-  flex: 1; /* Take up available space */
+  flex: 1;
   padding: 8px;
   border: 1px solid #aaa;
   border-radius: 4px;
