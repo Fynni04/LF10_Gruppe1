@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import {QualificationEditComponent} from './qualification-edit.component';
 
 describe('QualificationEditComponent', () => {
+
   let component: QualificationEditComponent;
   let fixture: ComponentFixture<QualificationEditComponent>;
 

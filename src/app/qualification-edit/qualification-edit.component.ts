@@ -13,6 +13,7 @@ import Keycloak from "keycloak-js";
 })
 export class QualificationEditComponent {
   private readonly keycloak = inject(Keycloak);
+
   qualifications$: Observable<Qualification[]>;
 
   constructor(private http: HttpClient) {
