@@ -7,6 +7,7 @@ import { Router, UrlTree } from '@angular/router';
 import {CreateEmployeesComponent} from "./create-employees/create-employees-component";
 import {EmployeeListComponent} from "./employee-list/employee-list.component";
 import {QualificationEditComponent} from "./qualification-edit/qualification-edit.component";
+import {QualificationCreateComponent} from "./qualification-create/qualification-create.component";
 
 
  /**
@@ -65,6 +66,7 @@ export const routes: Routes =
   { path: 'create-employees',         component: CreateEmployeesComponent,    canActivate: [canActivateAuthRole], data: { role: 'user' } },
   { path: 'app-employee-list',        component: EmployeeListComponent,       canActivate: [canActivateAuthRole], data: { role: 'user' } },
   { path: 'app-qualification-edit',   component: QualificationEditComponent,  canActivate: [canActivateAuthRole], data: { role: 'user' } },
+    { path: 'app-qualification-create',   component: QualificationCreateComponent,  canActivate: [canActivateAuthRole], data: { role: 'user' } },
   { path: '**',                       redirectTo: '/forbidden'                                                                           }
   ];
 
