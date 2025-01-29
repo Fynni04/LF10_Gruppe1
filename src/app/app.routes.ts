@@ -7,6 +7,7 @@ import { Router, UrlTree } from '@angular/router';
 import {CreateEmployeesComponent} from "./create-employees/create-employees-component";
 import {EmployeeListComponent} from "./employee-list/employee-list.component";
 import {QualificationEditComponent} from "./qualification-edit/qualification-edit.component";
+import {QualificationListComponent} from "./qualification-list/qualification-list.component";
 
 const isAccessAllowed = async (
   route: ActivatedRouteSnapshot,
@@ -48,6 +49,7 @@ export const routes: Routes = [
   { path: 'create-employees', component: CreateEmployeesComponent, canActivate: [canActivateAuthRole], data: { role: 'user' } },
   { path: 'app-employee-list', component: EmployeeListComponent, canActivate: [canActivateAuthRole], data: { role: 'user' } },
   { path: 'app-qualification-edit', component: QualificationEditComponent, canActivate: [canActivateAuthRole], data: { role: 'user' } },
+  { path: 'app-qualification-list', component: QualificationListComponent, canActivate: [canActivateAuthRole], data: { role: 'user' } },
   { path: '**', redirectTo: '/forbidden' }
 ];
 
