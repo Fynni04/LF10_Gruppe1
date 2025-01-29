@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {QualificationEditComponent} from './qualification-edit.component';
 
-import { QualificationEditComponent } from './qualification-edit.component';
+describe('QualificationEditComponent', () => {
 
-describe('QualificationListComponent', () => {
   let component: QualificationEditComponent;
   let fixture: ComponentFixture<QualificationEditComponent>;
 
