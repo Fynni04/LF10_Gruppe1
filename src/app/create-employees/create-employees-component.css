@@ -1,6 +1,6 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: gray;
+  background-color: gray; /* Grauer Hintergrund */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -8,36 +8,32 @@ body {
   margin: 0;
 }
 
-.heading {
-  font-size: 24px;
-  font-weight: bold;
-  text-align: center;
-}
-
-.employee-form {
-  background-color: #d3d3d3;
+.create-employee {
+  background-color: #d3d3d3; /* Hellgrauer Container */
   border: 1px solid #b0b0b0;
   border-radius: 8px;
   width: 400px;
   padding: 20px;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Schatten für den Container */
 }
 
-.employee-form h2 {
+.create-employee h2 {
   text-align: center;
   margin-bottom: 20px;
   font-size: 36px;
   font-weight: bold;
+  color: #333; /* Dunkelgraue Schrift */
 }
 
 .form-section {
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 .form-section label {
   display: block;
   font-weight: bold;
   margin-bottom: 5px;
+  color: #555; /* Mittelgraue Schrift für Labels */
 }
 
 .form-section input {
@@ -46,33 +42,12 @@ body {
   border: 1px solid #aaa;
   border-radius: 4px;
   box-sizing: border-box;
+  font-size: 14px;
 }
 
-.qualifications-section {
-  width: 100%;
-  margin-top: 0px;
-}
-
-.qualifications-section h3 {
-  margin-bottom: 5px;
-}
-
-.qualifications-section input {
-  width: 70%;
-  padding: 8px;
-  border: 1px solid #aaa;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
-
-
-.qualifications-section ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.qualifications-section li {
-  margin-bottom: 5px;
+.form-section input:focus {
+  border-color: #4caf50; /* Grüner Rand beim Fokussieren */
+  outline: none;
 }
 
 .buttons {
@@ -83,47 +58,26 @@ body {
 
 .cancel-btn,
 .save-btn {
-  background-color: #ccc;
   border: none;
   border-radius: 4px;
   padding: 10px 15px;
   cursor: pointer;
   font-weight: bold;
+  font-size: 14px;
+  transition: opacity 0.3s ease; /* Sanfter Hover-Effekt */
+}
+
+.cancel-btn {
+  background-color: #ccc; /* Grauer Button für Abbrechen */
+  color: #333;
 }
 
 .save-btn {
-  background-color: #4caf50;
+  background-color: #4caf50; /* Grüner Button für Speichern */
   color: white;
 }
 
 .cancel-btn:hover,
 .save-btn:hover {
-  opacity: 0.8;
-}
-
-.qualification-input-container {
-  display: flex;
-  gap: 10px;
-}
-
-.qualification-input-container input[type="text"] {
-  flex: 1;
-  padding: 8px;
-  border: 1px solid #aaa;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
-
-.add-qualification-btn {
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  padding: 10px 2px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.add-qualification-btn:hover {
-  opacity: 0.8;
+  opacity: 0.8; /* Hover-Effekt */
 }
