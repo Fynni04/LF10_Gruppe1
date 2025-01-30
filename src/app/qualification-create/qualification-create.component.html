@@ -1,37 +1,46 @@
-<div class="qualification-container">
-  <h2>Qualifikation Erstellen</h2>
+<body>
+  <div class="qualification-container">
+    <h2>Qualifikation erstellen</h2>
 
-  <!-- Eingabefeld für den Namen -->
-  <div class="form-group">
-    <label for="qualification-name">Name:</label>
-    <input id="qualification-name" [(ngModel)]="newQualification" placeholder="Name" />
+    <!-- Eingabefelder für Skill und Name -->
+    <div class="form-group">
+      <label for="qualification-skill">Skill* (Pflichtfeld):</label>
+      <input
+        id="qualification-skill"
+        [(ngModel)]="newSkill"
+        placeholder="Skill eingeben (z. B. Kommunikation)"
+        required
+      >
+    </div>
+
+    <!-- Tabelle mit Mitarbeitern -->
+    <div class="employee-list">
+      <table>
+        <thead>
+        <tr>
+          <th>Mitarbeiter</th>
+          <th>✔</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let employee of employees">
+          <td>{{ employee?.firstName + " " + employee?.lastName }}</td>
+          <td>
+            <input
+              type="checkbox"
+              [checked]="isEmployeeSelected(employee)"
+              (change)="toggleEmployeeSelection(employee)"
+            />
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Buttons -->
+    <div class="button-group">
+      <button (click)="resetForm()">Abbrechen</button>
+      <button (click)="saveQualification()">Erstellen</button>
+    </div>
   </div>
-
-  <!-- Tabelle mit Mitarbeitern -->
-  <div class="employee-list">
-    <table>
-      <thead>
-      <tr>
-        <th>Mitarbeiter</th>
-        <th>✔</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let employee of employees">
-        <td>{{ employee?.firstName + " " + employee?.lastName }}</td>
-        <td>
-          <input type="checkbox" [checked]="isEmployeeSelected(employee)"
-                 (change)="toggleEmployeeSelection(employee)" />
-        </td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <!-- Buttons -->
-  <div class="button-group">
-    <button (click)="resetForm()">Abbrechen</button>
-    <button (click)="saveQualification()">Erstellen</button>
-  </div>
-</div>
-
+</body>

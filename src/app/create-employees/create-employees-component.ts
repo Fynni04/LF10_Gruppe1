@@ -20,26 +20,10 @@ export class CreateEmployeesComponent {
   employeePostcode         = '' ;
   employeeCity             = '' ;
   employeePhone            = '' ;
-  qualSkill                = '' ;
   qualifications: Qualification[] = [] ;
 
   constructor(private http: HttpClient) {}
   private readonly keycloak = inject(Keycloak);
-
-   /**
-   * Fügt eine neue Qualifikation zur Liste der Qualifikationen hinzu.
-   * Wenn ein qualSkill vorhanden ist, wird eine neue Qualifikation erstellt und zur Liste hinzugefügt.
-   * Danach wird das qualSkill-Feld geleert.
-   */
-
-  addQualification()
-  {
-    if (this.qualSkill)
-    {
-      this.qualifications.push(new Qualification(this.qualSkill));
-      this.qualSkill = '';
-    }
-  }
 
    /**
    * Speichert einen neuen Mitarbeiter.
@@ -96,6 +80,5 @@ export class CreateEmployeesComponent {
     this.employeePostcode   = '';
     this.employeeCity       = '';
     this.employeePhone      = '';
-    this.qualifications     = [];
   }
 }

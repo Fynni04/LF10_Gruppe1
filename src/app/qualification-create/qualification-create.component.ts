@@ -1,5 +1,4 @@
 import {Component, inject} from '@angular/core';
-import {Qualification} from "../Qualification";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import Keycloak from "keycloak-js";
 import {CommonModule} from "@angular/common";
@@ -13,7 +12,7 @@ import {FormsModule} from "@angular/forms";
   styleUrl: './qualification-create.component.css'
 })
 export class QualificationCreateComponent {
-  newQualification: string = ''; // Qualifikationsname
+  newSkill: string = '';
   employees: Employee[] = []; // Liste der Mitarbeiter
   selectedEmployees: Employee[] = []; // Ausgewählte Mitarbeiter (gesamtes Objekt)
   private readonly keycloak = inject(Keycloak);
@@ -58,29 +57,32 @@ export class QualificationCreateComponent {
    * Speichert die neue Qualifikation mit den ausgewählten Mitarbeitern.
    */
   saveQualification() {
-    if (!this.newQualification.trim()) {
-      alert('Bitte gib eine gültige Qualifikation ein!');
+    if (!this.newSkill.trim()) { // 👈 Validierung für beide Felder
+      alert('Bitte fülle alle Pflichtfelder aus!');
       return;
     }
 
+    // Korrektur 1: Extrahiere nur die IDs
     const qualificationData = {
-      name: this.newQualification.trim(),
-      employeeIds: Array.from(this.selectedEmployees)
+      skill: this.newSkill.trim(), // 👈 Hinzugefügt
+      employeeIds: this.selectedEmployees.map(e => e.id)
     };
 
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/json')
       .set('Authorization', `Bearer ${this.keycloak.token}`);
 
-    this.http.post('https://localhost:8089/qualifications', qualificationData, { headers })
+    this.http.post('http://localhost:8089/qualifications', qualificationData, { headers })
       .subscribe({
         next: () => {
           alert('Qualifikation erfolgreich erstellt!');
           this.resetForm();
         },
         error: (error) => {
-          console.error('Fehler beim Erstellen der Qualifikation:', error);
-          alert('Speicherung fehlgeschlagen.');
+          // Verbesserte Fehlermeldung mit Backend-Response
+          console.error('Fehler:', error);
+          const errorMsg = error.error?.message || 'Unbekannter Fehler';
+          alert(`Fehler beim Speichern: ${errorMsg}`);  // 👈 Detaillierte Meldung
         }
       });
   }
@@ -89,7 +91,7 @@ export class QualificationCreateComponent {
    * Setzt das Formular zurück.
    */
   resetForm() {
-    this.newQualification = '';
     this.selectedEmployees = [];
+    this.newSkill = '';
   }
 }
