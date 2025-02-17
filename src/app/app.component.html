@@ -2,10 +2,9 @@
   <header>
     <h1>Welcome to Employee Management Service</h1>
   </header>
-
-  <app-menu></app-menu>
-
-  <router-outlet></router-outlet>
+   <button *ngIf="!authenticated" (click)="login()">Login</button>
+   <button *ngIf="authenticated" (click)="logout()">Logout</button>
+   <router-outlet></router-outlet>
 </div>
 
 

@@ -21,7 +21,6 @@ export class EmployeeListComponent {
     this.fetchData();
   }
 
-
   fetchData() {
     this.employees$ = this.http.get<Employee[]>('http://localhost:8089/employees', {
       headers: new HttpHeaders()

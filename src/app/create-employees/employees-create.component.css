@@ -1,20 +1,21 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: gray; /* Grauer Hintergrund */
+  background-color: #f8f9fa;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 80vh;
+  width: 100vh;
   margin: 0;
 }
 
 .create-employee {
-  background-color: #d3d3d3; /* Hellgrauer Container */
+  background-color: #d3d3d3;
   border: 1px solid #b0b0b0;
   border-radius: 8px;
   width: 400px;
   padding: 20px;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Schatten für den Container */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .create-employee h2 {
@@ -22,7 +23,7 @@ body {
   margin-bottom: 20px;
   font-size: 36px;
   font-weight: bold;
-  color: #333; /* Dunkelgraue Schrift */
+  color: #333;
 }
 
 .form-section {
@@ -33,7 +34,7 @@ body {
   display: block;
   font-weight: bold;
   margin-bottom: 5px;
-  color: #555; /* Mittelgraue Schrift für Labels */
+  color: #555;
 }
 
 .form-section input {
@@ -46,7 +47,7 @@ body {
 }
 
 .form-section input:focus {
-  border-color: #4caf50; /* Grüner Rand beim Fokussieren */
+  border-color: #4caf50;
   outline: none;
 }
 
@@ -56,28 +57,37 @@ body {
   margin-top: 20px;
 }
 
-.cancel-btn,
-.save-btn {
+.reset-btn,
+.save-btn,
+.back-btn {
   border: none;
   border-radius: 4px;
   padding: 10px 15px;
   cursor: pointer;
   font-weight: bold;
   font-size: 14px;
-  transition: opacity 0.3s ease; /* Sanfter Hover-Effekt */
+  transition: opacity 0.3s ease;
 }
 
-.cancel-btn {
-  background-color: #ccc; /* Grauer Button für Abbrechen */
-  color: #333;
+.reset-btn {
+  width: 100px;
+  background-color: grey;
+  color: white;
+}
+
+.back-btn {
+  width: 100px;
+  background-color: #0056b3;
+  color: white;
 }
 
 .save-btn {
-  background-color: #4caf50; /* Grüner Button für Speichern */
+  background-color: #4caf50;
   color: white;
 }
 
 .cancel-btn:hover,
-.save-btn:hover {
-  opacity: 0.8; /* Hover-Effekt */
+.save-btn:hover,
+.back-btn:hover {
+  opacity: 0.8;
 }

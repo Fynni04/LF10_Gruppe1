@@ -4,6 +4,7 @@ import Keycloak from "keycloak-js";
 import {CommonModule} from "@angular/common";
 import {Employee} from "../Employee";
 import {FormsModule} from "@angular/forms";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-qualification-create',
@@ -18,7 +19,7 @@ export class QualificationCreateComponent {
   private readonly keycloak = inject(Keycloak);
   private readonly http: HttpClient;
 
-  constructor(http: HttpClient) {
+  constructor(http: HttpClient, private router: Router) {
     this.http = http;
     this.fetchEmployees(); // Lade die Mitarbeiter beim Initialisieren der Komponente
   }
@@ -93,5 +94,9 @@ export class QualificationCreateComponent {
   resetForm() {
     this.selectedEmployees = [];
     this.newSkill = '';
+  }
+
+  BackToMainPage() {
+    this.router.navigate(['/app-menu'])
   }
 }

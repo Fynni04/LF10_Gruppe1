@@ -1,0 +1,66 @@
+/* Allgemeine Stile für den Container */
+div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f8f9fa; /* Heller Hintergrund */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Schatten für einen modernen Look */
+}
+
+/* Stile für die Buttons */
+button {
+  background-color: #007bff; /* Blaue Hintergrundfarbe */
+  color: white; /* Weiße Schrift */
+  border: none;
+  padding: 10px 20px;
+  margin: 5px 0;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  width: 200px; /* Feste Breite für ein einheitliches Aussehen */
+  text-align: center;
+}
+
+/* Hover-Effekt für Buttons */
+button:hover {
+  background-color: #0056b3; /* Dunkleres Blau beim Hover */
+  transform: translateY(-2px); /* Leichter Anstieg beim Hover */
+}
+
+/* Stile für den Logout-Button */
+button[routerLink="/logout"] {
+  background-color: #dc3545; /* Rote Hintergrundfarbe für Logout */
+}
+
+button[routerLink="/logout"]:hover {
+  background-color: #c82333; /* Dunkleres Rot beim Hover */
+}
+
+/* Stile für den Login-Button */
+button[routerLink="/login"] {
+  background-color: #28a745; /* Grüne Hintergrundfarbe für Login */
+}
+
+button[routerLink="/login"]:hover {
+  background-color: #218838; /* Dunkleres Grün beim Hover */
+}
+
+/* Stile für die Buttons, die nur sichtbar sind, wenn authentifiziert */
+button[routerLink]:not([routerLink="/login"]):not([routerLink="/logout"]) {
+  background-color: #6c757d; /* Graue Hintergrundfarbe für andere Buttons */
+}
+
+button[routerLink]:not([routerLink="/login"]):not([routerLink="/logout"]):hover {
+  background-color: #5a6268; /* Dunkleres Grau beim Hover */
+}
+
+/* Stile für das Heading */
+h1 {
+  font-size: 48px;
+  color: #343a40; /* Dunkle Schriftfarbe */
+  margin-bottom: 20px;
+  text-align: center;
+}

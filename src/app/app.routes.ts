@@ -4,7 +4,7 @@ import { createAuthGuard, AuthGuardData } from 'keycloak-angular';
 import { MenuComponent} from "./menu-component/menu-component";
 import { inject } from '@angular/core';
 import { Router, UrlTree } from '@angular/router';
-import {CreateEmployeesComponent} from "./create-employees/create-employees-component";
+import {EmployeesCreateComponent} from "./create-employees/employees-create.component";
 import {EmployeeListComponent} from "./employee-list/employee-list.component";
 import {QualificationEditComponent} from "./qualification-edit/qualification-edit.component";
 import {QualificationCreateComponent} from "./qualification-create/qualification-create.component";
@@ -62,11 +62,12 @@ export const canActivateAuthRole = createAuthGuard(isAccessAllowed);
 
 export const routes: Routes =
   [
-  { path: 'app-menu',                 component: MenuComponent,               canActivate: [canActivateAuthRole]                         },
-  { path: 'create-employees',         component: CreateEmployeesComponent,    canActivate: [canActivateAuthRole], data: { role: 'user' } },
-  { path: 'app-employee-list',        component: EmployeeListComponent,       canActivate: [canActivateAuthRole], data: { role: 'user' } },
-  { path: 'app-qualification-edit',   component: QualificationEditComponent,  canActivate: [canActivateAuthRole], data: { role: 'user' } },
-    { path: 'app-qualification-create',   component: QualificationCreateComponent,  canActivate: [canActivateAuthRole], data: { role: 'user' } },
+  { path: '', redirectTo: '/app-menu', pathMatch: 'full' },
+  { path: 'app-menu',                 component: MenuComponent,                canActivate: [canActivateAuthRole], data: { role: 'user' } },
+  { path: 'create-employees',         component: EmployeesCreateComponent,     canActivate: [canActivateAuthRole], data: { role: 'user' } },
+  { path: 'app-employee-list',        component: EmployeeListComponent,        canActivate: [canActivateAuthRole], data: { role: 'user' } },
+  { path: 'app-qualification-edit',   component: QualificationEditComponent,   canActivate: [canActivateAuthRole], data: { role: 'user' } },
+  { path: 'app-qualification-create', component: QualificationCreateComponent, canActivate: [canActivateAuthRole], data: { role: 'user' } },
   { path: '**',                       redirectTo: '/forbidden'                                                                           }
   ];
 

@@ -1,0 +1,62 @@
+/* Allgemeine Stile für den Container */
+
+div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f8f9fa; /* Heller Hintergrund */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Schatten für einen modernen Look */
+}
+
+/* Stile für die Buttons */
+button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 5px 0;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  width: 200px;
+  text-align: center;
+}
+
+button:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+button[routerLink="/logout"] {
+  background-color: #dc3545;
+}
+
+button[routerLink="/logout"]:hover {
+  background-color: #c82333;
+}
+
+button[routerLink="/login"] {
+  background-color: #28a745;
+}
+
+button[routerLink="/login"]:hover {
+  background-color: #218838;
+}
+
+button[routerLink]:not([routerLink="/login"]):not([routerLink="/logout"]) {
+  background-color: #6c757d;
+}
+
+button[routerLink]:not([routerLink="/login"]):not([routerLink="/logout"]):hover {
+  background-color: #5a6268;
+}
+
+h1 {
+  font-size: 24px;
+  color: #343a40;
+  margin-bottom: 20px;
+  text-align: center;
+}

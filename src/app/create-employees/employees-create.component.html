@@ -1,7 +1,7 @@
 <!DOCTYPE html>
   <body>
   <div class="create-employee">
-    <link rel="stylesheet" href="create-employees-component.css">
+    <link rel="stylesheet" href="employees-create.component.css">
 
     <form (ngSubmit)="saveEmployee()">
       <div class="heading">
@@ -45,7 +45,8 @@
       </div>
 
       <div class="buttons">
-        <button type="button" class="cancel-btn" (click)="resetForm()">Abbrechen</button>
+        <button type="button" class="back-btn" (click)="BackToMainPage()">Zurück</button>
+        <button type="button" class="reset-btn" (click)="resetForm()">Reset</button>
         <button type="submit" class="save-btn">Mitarbeiter hinzufügen</button>
       </div>
 

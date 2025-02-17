@@ -1,4 +1,5 @@
 import {Component, inject} from '@angular/core';
+import {Router} from '@angular/router';
 import { CommonModule } from '@angular/common';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Employee} from "../Employee";
@@ -7,13 +8,13 @@ import {Qualification} from "../Qualification";
 import Keycloak from "keycloak-js";
 
 @Component({
-    selector:                      'create-employees',
+    selector:                   'app-employee-create',
     imports:              [CommonModule, FormsModule],
-    templateUrl:  './create-employees-component.html',
-    styleUrl:      './create-employees-component.css'
+    templateUrl:  './employees-create.component.html',
+    styleUrl:      './employees-create.component.css'
 })
 
-export class CreateEmployeesComponent {
+export class EmployeesCreateComponent {
   employeeName             = '' ;
   employeeSurname          = '' ;
   employeeStreet           = '' ;
@@ -22,7 +23,7 @@ export class CreateEmployeesComponent {
   employeePhone            = '' ;
   qualifications: Qualification[] = [] ;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
   private readonly keycloak = inject(Keycloak);
 
    /**
@@ -81,4 +82,8 @@ export class CreateEmployeesComponent {
     this.employeeCity       = '';
     this.employeePhone      = '';
   }
+
+  BackToMainPage() {
+      this.router.navigate(['/app-menu'])
+    }
 }

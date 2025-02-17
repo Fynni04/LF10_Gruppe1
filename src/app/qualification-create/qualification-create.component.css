@@ -1,10 +1,10 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: gray;
+  background-color: #f8f9fa;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 65vh;
   margin: 0;
 }
 
@@ -74,7 +74,6 @@ body {
 }
 
 .button-group button {
-  background-color: #ccc;
   border: none;
   border-radius: 4px;
   padding: 10px 15px;
@@ -86,7 +85,25 @@ body {
   opacity: 0.8;
 }
 
-.button-group button:last-child {
+/**.button-group button:last-child {
+  background-color: #4caf50;
+  color: white;
+}**/
+
+.reset-btn {
+  width: 125px;
+  background-color: grey;
+  color: white;
+}
+
+.back-btn {
+  width: 125px;
+  background-color: #0056b3;
+  color: white;
+}
+
+.save-btn {
+  width: 125px;
   background-color: #4caf50;
   color: white;
 }

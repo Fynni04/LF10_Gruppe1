@@ -39,8 +39,10 @@
 
     <!-- Buttons -->
     <div class="button-group">
-      <button (click)="resetForm()">Abbrechen</button>
-      <button (click)="saveQualification()">Erstellen</button>
+      <button type="button" class="back-btn" (click)="BackToMainPage()">Zurück</button>
+      <button type="button" class="reset-btn" (click)="resetForm()">Abbrechen</button>
+      <button type="button" class="save-btn" (click)="saveQualification()">Erstellen</button>
     </div>
+
   </div>
 </body>
