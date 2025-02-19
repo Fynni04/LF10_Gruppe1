@@ -1,9 +1,12 @@
-<h1>Qualifications</h1>
-Das hier ist nur ein test
-<ul>
-  @for(e of qualifications$ | async; track e.skill) {
-    <li>
-      {{e.skill }}
-    </li>
-  }
-</ul>
+<body>
+  <div class="qualification-list">
+        <ul>
+          @for(e of qualifications$ | async; track e.skill) {
+            <li>
+            {{e.skill }}
+            </li>
+          }
+        </ul>
+    <button type="button" class="back-btn" (click)="BackToMainPage()">Zurück</button>
+  </div>
+</body>
