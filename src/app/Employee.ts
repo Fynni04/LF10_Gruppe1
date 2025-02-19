@@ -11,4 +11,5 @@ export class Employee
               public phone         ?:                string,
               public qualifications?:     Qualification[]) {
   }
+
 }

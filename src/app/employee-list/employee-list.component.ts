@@ -47,7 +47,7 @@ export class EmployeeListComponent {
           error: (error) =>
           {
             console.error('Error deleting employee:', error);
-            alert('Fehler beim Löschen des Mitarbeiters!');
+            alert('Fehler beim Löschen des Mitarbeiters: '+employeeID+' !: ' + error);
           }
         }
       );

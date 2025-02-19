@@ -3,7 +3,7 @@ Wenn Sie in der EmployeeListComponent.ts ein gültiges Bearer-Token eintragen, s
 <ul>
   @for(e of employees$ | async; track e.id) {
     <li>
-      {{e.lastName }}, {{e.firstName}}, {{e.street}}, {{e.city}}, <button (click)="deletEmployee(e.id)">Delet</button>, <button routerLink="/app-qualification-edit">Edit</button>
+      {{e.lastName }}, {{e.firstName}}, {{e.street}}, {{e.city}}, <button (click)="deletEmployee(e.id)">Delet</button>, <button [routerLink]="['/app-employee-edit', e.id]">Edit</button>
     </li>
   }
 </ul>

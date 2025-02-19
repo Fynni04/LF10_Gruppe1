@@ -1,9 +1,69 @@
-<h1>Edit Employee</h1>
-Wenn Sie in der EmployeeEditComponent.ts ein gültiges Bearer-Token eintragen, sollten hier die Namen der in der Datenbank gespeicherten Mitarbeiter angezeigt werden!
-<ul>
+<!DOCTYPE html>
+<body>
+<div class="employee-edit">
+  <link rel="stylesheet" href="employee-edit-component.css">
 
-    <li>
-      {{e of employee$}}
-    </li>
+  <form (ngSubmit)="saveEmployee()">
+    <div class="heading">
+      <h2>Mitarbeiter Bearbeiten</h2>
+    </div>
 
-</ul>
+    <div class="form-section">
+      <label for="name">Vorname:</label>
+      <input id="name" type="text" placeholder="Vorname eingeben"
+             [(ngModel)]="employeeName" name="employeeName" required />
+    </div>
+
+    <div class="form-section">
+      <label for="nachname">Nachname:</label>
+      <input id="nachname" type="text" placeholder="Nachname eingeben"
+             [(ngModel)]="employeeSurname" name="employeeSurname" required />
+    </div>
+
+    <div class="form-section">
+      <label for="strasse">Straße:</label>
+      <input id="strasse" type="text" placeholder="Straße eingeben"
+             [(ngModel)]="employeeStreet" name="employeeStreet" required />
+    </div>
+
+    <div class="form-section">
+      <label for="plz">PLZ:</label>
+      <input id="plz" type="text" placeholder="PLZ eingeben"
+             [(ngModel)]="employeePostcode" name="employeePostcode" required />
+    </div>
+
+    <div class="form-section">
+      <label for="stadt">Stadt:</label>
+      <input id="stadt" type="text" placeholder="Stadt eingeben"
+             [(ngModel)]="employeeCity" name="employeeCity" required />
+    </div>
+
+    <div class="form-section">
+      <label for="telefon">Telefon-Nr.:</label>
+      <input id="telefon" type="text" placeholder="Telefon-Nr. eingeben"
+             [(ngModel)]="employeePhone" name="employeePhone" required />
+    </div>
+
+    <div class="qualifications-section">
+      <h3>Qualifikationen</h3>
+      <div class="qualification-input-container">
+        <input id="qualification" type="text" placeholder="Qualifikation eingeben"
+               [(ngModel)]="qualSkill" name="qualSkill" />
+        <button type="button" class="add-qualification-btn" (click)="addQualification()">Qualifikation hinzufügen</button>
+      </div>
+      <ul>
+        <li *ngFor="let qual of qualifications">
+          {{ qual.skill }}
+        </li>
+      </ul>
+    </div>
+
+    <div class="buttons">
+      <button type="button" class="cancel-btn" (click)="resetForm()">Abbrechen</button>
+      <button type="submit" class="save-btn">Mitarbeiter hinzufügen</button>
+    </div>
+
+  </form>
+</div>
+</body>
+
