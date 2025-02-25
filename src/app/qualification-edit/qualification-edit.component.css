@@ -27,7 +27,7 @@ body {
   font-weight: bold;
 }
 
-/* Formulargruppe */
+ Formulargruppe
 .form-group {
   margin-bottom: 15px;
 }
@@ -73,13 +73,60 @@ body {
   cursor: pointer;
 }
 
+
+.qualification-edit {
+  margin-bottom: 15px;
+}
+
+.qualification-edit label {
+  display: block;
+  font-weight: bold;
+  color: #555;
+  margin-bottom: 5px;
+  margin-top: 20px;
+}
+
+.qualification-edit input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+.qualification-list {
+  width: 100%;
+  margin-top: 15px;
+}
+
+.qualification-list table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.qualification-list th,
+.qualification-list td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #aaa;
+}
+
+.qualification-list th {
+  font-weight: bold;
+}
+
+.qualification-list input[type="checkbox"] {
+  cursor: pointer;
+}
+
 .form-group input:focus {
   border-color: #4caf50;
   outline: none;
 }
 
 .checkmark {
-   
+
 }
 
 /* Button-Gruppe */
