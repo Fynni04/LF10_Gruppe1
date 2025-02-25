@@ -1,0 +1,134 @@
+/* Allgemeine Seiteneinstellungen */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 65vh;
+  margin: 0;
+}
+
+/* Hauptcontainer */
+.qualification-container {
+  background-color: #d3d3d3;
+  border: 1px solid #b0b0b0;
+  border-radius: 8px;
+  width: 450px;
+  padding: 20px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Überschrift */
+.qualification-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 36px;
+  font-weight: bold;
+}
+
+/* Formulargruppe */
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+.employee-list {
+  width: 100%;
+  margin-top: 15px;
+}
+
+.employee-list table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.employee-list th,
+.employee-list td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #aaa;
+}
+
+.employee-list th {
+  font-weight: bold;
+}
+
+.employee-list input[type="checkbox"] {
+  cursor: pointer;
+}
+
+.form-group input:focus {
+  border-color: #4caf50;
+  outline: none;
+}
+
+.checkmark {
+   
+}
+
+/* Button-Gruppe */
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+.button-group button {
+  border: none;
+  border-radius: 4px;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Allgemeine Button-Stile */
+.back-btn,
+.reset-btn,
+.save-btn {
+  border: none;
+  border-radius: 4px;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  width: 125px;
+  transition: opacity 0.3s ease;
+}
+
+/* Farben der Buttons */
+.back-btn {
+  background-color: #0056b3;
+  color: white;
+}
+
+.reset-btn {
+  background-color: grey;
+  color: white;
+}
+
+.save-btn {
+  background-color: #4caf50;
+  color: white;
+}
+
+/* Hover-Effekt */
+.back-btn:hover,
+.reset-btn:hover,
+.save-btn:hover {
+  opacity: 0.8;
+}
