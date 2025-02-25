@@ -2,15 +2,9 @@
 <div class="qualification-container">
   <h2>Qualifikation bearbeiten</h2>
 
-    <div class="form-group">
-      <!-- Skill-Eingabefeld -->
-      <label for="skill">Qualifikation bearbeiten:</label>
-      <input type="text" id="Editskill" [(ngModel)]="EditSkill" placeholder="Qualifikation (bearbeiten)" required />
-    </div>
-
   <div class="form-group">
     <!-- Skill-Eingabefeld -->
-    <label for="skill">Qualifikation nachträglich hinzufügen:</label>
+    <label for="skill">Qualifikation nachträglich einem Mitarbeiter hinzufügen:</label>
     <input type="text" id="skill" [(ngModel)]="Skill" placeholder="Qualifikation eintragen" required />
   </div>
 
@@ -39,7 +33,14 @@
       </tbody>
     </table>
   </div>
-  <div class="employee-list">
+
+  <div class="qualification-edit">
+    <!-- Skill-Eingabefeld -->
+    <label for="skill">Qualifikation bearbeiten:</label>
+    <input type="text" id="Editskill" [(ngModel)]="EditSkill" placeholder="Qualifikation (bearbeiten)" required />
+  </div>
+
+  <div class="qualification-list">
     <table>
       <thead>
       <tr>
