@@ -29,7 +29,7 @@ export class EmployeeListComponent {
         .set('Authorization', `Bearer ${this.keycloak.token}`)
     });
   }
-  deletEmployee(employeeID:any){
+  deleteEmployee(employeeID:any){
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/json')
       .set('Authorization', `Bearer ${this.keycloak.token}`);

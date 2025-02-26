@@ -54,16 +54,16 @@
       <ul>
         <li *ngFor="let qual of qualifications">
           {{ qual.skill }}
+          <button type="button" class="remove-qualification-btn" (click)="removeQualification(qual)">X</button>
         </li>
       </ul>
     </div>
 
     <div class="buttons">
       <button type="button" class="cancel-btn" (click)="resetForm()">Abbrechen</button>
-      <button type="submit" class="save-btn">Mitarbeiter hinzufügen</button>
+      <button type="button" class="back-btn" (click)="goBack()">Zurück</button>
+      <button type="submit" class="save-btn">Mitarbeiter aktualisieren</button>
     </div>
-
   </form>
 </div>
 </body>
-
