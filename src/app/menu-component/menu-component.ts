@@ -8,7 +8,7 @@ import { NgIf } from "@angular/common";
   selector: 'app-menu',
   templateUrl: './menu-component.html',
   standalone: true,
-  imports: [RouterLink, NgIf],
+  imports: [NgIf],
   styleUrls: ['./menu-component.css']
 })
 export class MenuComponent {

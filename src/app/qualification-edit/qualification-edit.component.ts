@@ -14,6 +14,7 @@ import {Employee} from "../Employee";
   styleUrl: './qualification-edit.component.css'
 })
 export class QualificationEditComponent {
+  Id: number | undefined;
   Skill = ''; // Skill der Qualifikation
   EditSkill = '';
   // qualificationId: number | undefined; // ID der Qualifikation (falls vorhanden)
@@ -95,7 +96,7 @@ export class QualificationEditComponent {
       return;
     }
 
-    const updatedQualification = new Qualification(this.Skill);
+    const updatedQualification = new Qualification(this.Id, this.Skill);
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/json')
       .set('Authorization', `Bearer ${this.keycloak.token}`);

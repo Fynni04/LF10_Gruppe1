@@ -26,6 +26,7 @@ export class EmployeeEditComponent implements OnInit {
   employeePostcode = '';
   employeeCity = '';
   employeePhone = '';
+  qualId: number | undefined;
   qualSkill = '';
   qualifications: Qualification[] = [];
 
@@ -58,7 +59,7 @@ export class EmployeeEditComponent implements OnInit {
 
   addQualification(): void {
     if (this.qualSkill) {
-      this.qualifications.push(new Qualification(this.qualSkill));
+      this.qualifications.push(new Qualification(this.qualId ,this.qualSkill));
       this.qualSkill = '';
     }
   }
