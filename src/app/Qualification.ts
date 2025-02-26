@@ -1,5 +1,7 @@
 export class Qualification {
-  constructor(public skill?: string)
+  constructor(
+    public id?: undefined,
+    public skill?: string)
   {
   }
 }

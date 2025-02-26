@@ -29,6 +29,31 @@ export class QualificationListComponent {
     });
   }
 
+  deletQualification(qualificationID:any){
+    const headers = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Authorization', `Bearer ${this.keycloak.token}`);
+
+    this.http.delete<Qualification>( 'http://localhost:8089/qualifications/'+qualificationID, { headers } )
+      .subscribe
+      (
+        {
+          next: (response) =>
+          {
+            console.log('Qualification deleted:', response);
+            alert('Qualifikation erfolgreich gelöscht!');
+
+          },
+          error: (error) =>
+          {
+            console.error('Error deleting qualification:', error);
+            alert('Fehler beim Löschen der Qualifikation: '+qualificationID+' !: ' + error);
+          }
+        }
+      );
+  }
+
+
   BackToMainPage() {
     this.router.navigate(['/app-menu'])
   }

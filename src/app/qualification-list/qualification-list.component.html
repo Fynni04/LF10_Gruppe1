@@ -1,12 +1,16 @@
+<h1>Qualification list</h1>
 <body>
   <div class="qualification-list">
-        <ul>
-          @for(e of qualifications$ | async; track e.skill) {
-            <li>
-            {{e.skill }}
-            </li>
-          }
-        </ul>
+    <table>
+      @for(e of qualifications$ | async; track e.id) {
+        <tr>
+          <td>{{e.skill }} </td>
+          <td><button type="button" class="btn" (click)="deletQualification(e.id)">Delet</button></td>
+        </tr>
+      }
+    </table>
     <button type="button" class="back-btn" (click)="BackToMainPage()">Zurück</button>
   </div>
 </body>
+
+
