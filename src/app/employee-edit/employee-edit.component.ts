@@ -106,6 +106,10 @@ export class EmployeeEditComponent implements OnInit {
   }
 
   goBack(): void {
-    this.router.navigate(['/']); // Adjust the route as needed
+    this.router.navigate(['/app-employee-list']); // Adjust the route as needed
+  }
+
+  BackToMainPage() {
+    this.router.navigate(['/app-menu'])
   }
 }

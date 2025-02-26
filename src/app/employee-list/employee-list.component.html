@@ -1,9 +1,27 @@
-<h1>LF10-Starter</h1>
-
-<ul>
-  @for(e of employees$ | async; track e.id) {
-    <li>
-      {{e.lastName }}, {{e.firstName}}, {{e.street}}, {{e.city}} <button (click)="deleteEmployee(e.id)">Delete</button> | <button [routerLink]="['/app-employee-edit', e.id]">Edit</button>
+<div class="employee-list-container">
+  <h1>LF10-Starter</h1>
+  <ul>
+    <li *ngFor="let e of employees$ | async;">
+      <div class="employee-info">
+        <span class="employee-name">{{ e.lastName }}, {{ e.firstName }}</span>
+        <span class="employee-address">{{ e.street }}, {{ e.city }}</span>
+      </div>
+      <div class="qualifications">
+      <strong>Qualifikationen:</strong>
+      <ul *ngIf="e.qualifications && e.qualifications.length > 0; else noQualifications">
+        <li *ngFor="let qual of e.qualifications">
+          {{ qual.skill }}
+        </li>
+      </ul>
+      <ng-template #noQualifications>
+        <p>Keine Qualifikationen vorhanden.</p>
+      </ng-template>
+    </div>
+      <div class="button-group">
+        <button class="delete" (click)="deleteEmployee(e.id)">Delete</button>
+        <button class="edit" [routerLink]="['/app-employee-edit', e.id]">Edit</button>
+      </div>
     </li>
-  }
-</ul>
+  </ul>
+  <button class="back-btn" (click)="BackToMainPage()">Zurück</button>
+</div>

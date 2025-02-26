@@ -4,7 +4,7 @@ import {Observable, of} from "rxjs";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Employee} from "../Employee";
 import Keycloak from "keycloak-js";
-import {RouterLink} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 
 @Component({
     selector: 'app-employee-list',
@@ -16,7 +16,7 @@ export class EmployeeListComponent {
   employees$: Observable<Employee[]>;
   private readonly keycloak = inject(Keycloak);
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     this.employees$ = of([]);
     this.fetchData();
   }
@@ -27,7 +27,12 @@ export class EmployeeListComponent {
         .set('Content-Type', 'application/json')
         .set('Authorization', `Bearer ${this.keycloak.token}`)
     });
+
+    this.employees$.subscribe(employees => {
+      console.log('Employees:', employees); // Überprüfen Sie die Backend-Antwort
+    });
   }
+
   deleteEmployee(employeeID:any){
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/json')
@@ -50,5 +55,9 @@ export class EmployeeListComponent {
           }
         }
       );
+  }
+
+  BackToMainPage() {
+    this.router.navigate(['/app-menu'])
   }
 }

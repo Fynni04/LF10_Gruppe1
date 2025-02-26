@@ -1,8 +1,4 @@
-<!DOCTYPE html>
-<body>
-<div class="employee-edit">
-  <link rel="stylesheet" href="employee-edit-component.css">
-
+<div class="employee-edit-container">
   <form (ngSubmit)="saveEmployee()">
     <div class="heading">
       <h2>Mitarbeiter Bearbeiten</h2>
@@ -44,26 +40,29 @@
              [(ngModel)]="employeePhone" name="employeePhone" required />
     </div>
 
+    <!-- Qualifikationsbereich -->
     <div class="qualifications-section">
       <h3>Qualifikationen</h3>
       <div class="qualification-input-container">
         <input id="qualification" type="text" placeholder="Qualifikation eingeben"
                [(ngModel)]="qualSkill" name="qualSkill" />
-        <button type="button" class="add-qualification-btn" (click)="addQualification()">Qualifikation hinzufügen</button>
+        <button type="button" class="add-qualification-btn" (click)="addQualification()">
+          Hinzufügen
+        </button>
       </div>
       <ul>
         <li *ngFor="let qual of qualifications">
-          {{ qual.skill }}
+          <span>{{ qual.skill }}</span>
           <button type="button" class="remove-qualification-btn" (click)="removeQualification(qual)">X</button>
         </li>
       </ul>
     </div>
 
     <div class="buttons">
-      <button type="button" class="cancel-btn" (click)="resetForm()">Abbrechen</button>
-      <button type="button" class="back-btn" (click)="goBack()">Zurück</button>
-      <button type="submit" class="save-btn">Mitarbeiter aktualisieren</button>
+      <button type="button" class="cancel-btn"            (click)="resetForm()"                    >Reset</button>
+      <button type="button" class="back-btn"              (click)="goBack()"                      >Zurück</button>
+      <button type="button" class="back-to-main-page-btn" (click)="BackToMainPage()">Zurück zum Hauptmenü</button>
+      <button type="submit" class="save-btn">                                   Mitarbeiter aktualisieren</button>
     </div>
   </form>
 </div>
-</body>

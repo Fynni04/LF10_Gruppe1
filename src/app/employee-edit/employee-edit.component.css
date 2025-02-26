@@ -1,6 +1,6 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: gray;
+  background-color: #f8f9fa;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -8,105 +8,70 @@ body {
   margin: 0;
 }
 
-.heading {
-  font-size: 24px;
-  font-weight: bold;
-  text-align: center;
-}
-
-.employee-form {
+/* Container für den Employee Edit Bereich */
+.employee-edit-container {
   background-color: #d3d3d3;
   border: 1px solid #b0b0b0;
   border-radius: 8px;
-  width: 400px;
+  width: 500px;
   padding: 20px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.employee-form h2 {
+/* Überschrift */
+.employee-edit-container .heading h2 {
   text-align: center;
   margin-bottom: 20px;
   font-size: 36px;
   font-weight: bold;
+  color: #333;
 }
 
-.form-section {
-  margin-bottom: 10px;
+/* Formularabschnitte */
+.employee-edit-container .form-section {
+  margin-bottom: 15px;
 }
 
-.form-section label {
+.employee-edit-container .form-section label {
   display: block;
   font-weight: bold;
   margin-bottom: 5px;
+  color: #555;
 }
 
-.form-section input {
+.employee-edit-container .form-section input {
   width: 100%;
   padding: 8px;
   border: 1px solid #aaa;
   border-radius: 4px;
   box-sizing: border-box;
+  font-size: 14px;
 }
 
-.qualifications-section {
-  width: 100%;
-  margin-top: 0px;
+.employee-edit-container .form-section input:focus {
+  border-color: #4caf50;
+  outline: none;
 }
 
-.qualifications-section h3 {
-  margin-bottom: 5px;
-}
-
-.qualifications-section input {
-  width: 70%;
-  padding: 8px;
-  border: 1px solid #aaa;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
-
-
-.qualifications-section ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.qualifications-section li {
-  margin-bottom: 5px;
-}
-
-.buttons {
-  display: flex;
-  justify-content: space-between;
+/* Qualifikationsbereich */
+.employee-edit-container .qualifications-section {
   margin-top: 20px;
 }
 
-.cancel-btn,
-.save-btn {
-  background-color: #ccc;
-  border: none;
-  border-radius: 4px;
-  padding: 10px 15px;
-  cursor: pointer;
-  font-weight: bold;
+.employee-edit-container .qualifications-section h3 {
+  margin-bottom: 10px;
+  font-size: 24px;
+  text-align: center;
+  color: #333;
 }
 
-.save-btn {
-  background-color: #4caf50;
-  color: white;
-}
-
-.cancel-btn:hover,
-.save-btn:hover {
-  opacity: 0.8;
-}
-
-.qualification-input-container {
+.employee-edit-container .qualifications-section .qualification-input-container {
   display: flex;
   gap: 10px;
+  margin-bottom: 10px;
 }
 
-.qualification-input-container input[type="text"] {
+.employee-edit-container .qualifications-section input[type="text"] {
   flex: 1;
   padding: 8px;
   border: 1px solid #aaa;
@@ -114,16 +79,88 @@ body {
   box-sizing: border-box;
 }
 
-.add-qualification-btn {
+.employee-edit-container .qualifications-section .add-qualification-btn {
   background-color: #4caf50;
   color: white;
   border: none;
-  padding: 10px 2px;
+  padding: 10px;
   border-radius: 4px;
   cursor: pointer;
   font-weight: bold;
+  transition: opacity 0.3s ease;
 }
 
-.add-qualification-btn:hover {
+.employee-edit-container .qualifications-section .add-qualification-btn:hover {
+  opacity: 0.8;
+}
+
+.employee-edit-container .qualifications-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.employee-edit-container .qualifications-section li {
+  background-color: #fff;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  padding: 5px 10px;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.employee-edit-container .qualifications-section li .remove-qualification-btn {
+  background-color: #d9534f;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 10px;
+  color: white;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.employee-edit-container .qualifications-section li .remove-qualification-btn:hover {
+  opacity: 0.8;
+}
+
+/* Aktions-Buttons */
+.employee-edit-container .buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.employee-edit-container .buttons button {
+  border: none;
+  border-radius: 4px;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: opacity 0.3s ease;
+}
+
+.employee-edit-container .buttons .cancel-btn {
+  background-color: #ccc;
+  color: #333;
+}
+
+.employee-edit-container .buttons .back-btn {
+  background-color: #0056b3;
+  color: white;
+}
+
+.employee-edit-container .buttons .save-btn {
+  background-color: #4caf50;
+  color: white;
+}
+
+.employee-edit-container .buttons .back-to-main-page-btn {
+  background-color: #007bff;
+  color: white;
+}
+
+.employee-edit-container .buttons button:hover {
   opacity: 0.8;
 }
