@@ -9,6 +9,7 @@ import {EmployeeListComponent} from "./employee-list/employee-list.component";
 import {QualificationEditComponent} from "./qualification-edit/qualification-edit.component";
 import {QualificationCreateComponent} from "./qualification-create/qualification-create.component";
 import {EmployeeEditComponent} from "./employee-edit/employee-edit.component";
+import {QualificationListComponent} from "./qualification-list/qualification-list.component";
 
 
  /**
@@ -71,6 +72,7 @@ export const routes: Routes =
   { path: 'app-qualification-create', component: QualificationCreateComponent, canActivate: [canActivateAuthRole], data: { role: 'user' } },
   { path: 'app-employee-edit'     ,   component: EmployeeEditComponent,        canActivate: [canActivateAuthRole], data: { role: 'user' } },
   { path: 'app-employee-edit/:id',    component: EmployeeEditComponent,        canActivate: [canActivateAuthRole], data: { role: 'user' } },
+  { path: 'app-qualification-list',   component: QualificationListComponent,   canActivate: [canActivateAuthRole], data: { role: 'user' } },
   { path: '**',                       redirectTo: '/forbidden'                                                                           }
   ];
 
