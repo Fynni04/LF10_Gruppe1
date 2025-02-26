@@ -2,41 +2,9 @@
 <div class="qualification-container">
   <h2>Qualifikation bearbeiten</h2>
 
-  <div class="form-group">
-    <!-- Skill-Eingabefeld -->
-    <label for="skill">Qualifikation nachträglich einem Mitarbeiter hinzufügen:</label>
-    <input type="text" id="skill" [(ngModel)]="Skill" placeholder="Qualifikation eintragen" required />
-  </div>
-
-  <!-- Tabelle mit Mitarbeitern -->
-  <div class="employee-list">
-    <table>
-      <thead>
-      <tr>
-        <th>Mitarbeiter</th>
-        <div class="checkmark">
-        <th>✔</th>
-        </div>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let employee of employees">
-        <td>{{ employee?.firstName + " " + employee?.lastName }}</td>
-        <td>
-          <input
-            type="checkbox"
-            [checked]="isEmployeeSelected(employee)"
-            (change)="toggleEmployeeSelection(employee)"
-          />
-        </td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-
   <div class="qualification-edit">
     <!-- Skill-Eingabefeld -->
-    <label for="skill">Qualifikation bearbeiten:</label>
+    <label for="Editskill">Qualifikation bearbeiten:</label>
     <input type="text" id="Editskill" [(ngModel)]="EditSkill" placeholder="Qualifikation (bearbeiten)" required />
   </div>
 

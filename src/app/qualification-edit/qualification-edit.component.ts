@@ -17,16 +17,15 @@ export class QualificationEditComponent {
   Id: number | undefined;
   Skill = ''; // Skill der Qualifikation
   EditSkill = '';
-  // qualificationId: number | undefined; // ID der Qualifikation (falls vorhanden)
+  qualificationId: number | undefined; // ID der Qualifikation (falls vorhanden)
   private readonly keycloak = inject(Keycloak);
-  employees: Employee[] = []; // Liste der Mitarbeiter
-  selectedEmployees: Employee[] = []; // Ausgewählte Mitarbeiter (gesamtes Objekt)
+  // employees: Employee[] = []; // Liste der Mitarbeiter
+  // selectedEmployees: Employee[] = []; // Ausgewählte Mitarbeiter (gesamtes Objekt)
   qualifications: Qualification [] = [];
   selectedQualifications: Qualification[] = [];
 
   constructor(private http: HttpClient, private router: Router) {
     this.http = http;
-    this.fetchEmployees()
     this.fetchQualifications()
   }
 
@@ -45,45 +44,18 @@ export class QualificationEditComponent {
    * Prüft, ob eine Qualifikation bereits ausgewählt wurde.
    */
   isQualificationSelected(qualification: Qualification): boolean {
-    return this.selectedQualifications.some(q => q.skill === qualification.skill);
+    return this.selectedQualifications.some(q => q.id === qualification.id);
   }
 
   /**
    * Fügt oder entfernt Qualifikationen aus der Auswahl.
    */
   toggleQualificationSelection(qualification: Qualification) {
-    const index = this.selectedQualifications.findIndex(q => q.skill === qualification.skill);
+    const index = this.selectedQualifications.findIndex(q => q.id === qualification.id);
     if (index === -1) {
       this.selectedQualifications.push(qualification);
     } else {
       this.selectedQualifications.splice(index, 1);
-    }
-  }
-
-  fetchEmployees() {
-    const headers = new HttpHeaders()
-      .set('Authorization', `Bearer ${this.keycloak.token}`);
-
-    this.http.get<Employee[]>('http://localhost:8089/employees', { headers })
-      .subscribe({
-        next: (data) => { this.employees = data; },
-        error: (error) => { console.error('Fehler beim Laden der Mitarbeiter:', error); }
-      });
-  }
-
-
-  isEmployeeSelected(employee: Employee): boolean {
-    return this.selectedEmployees.some(e => e.id === employee.id);
-  }
-  /**
-   * Fügt oder entfernt Mitarbeiter aus der Auswahl.
-   */
-  toggleEmployeeSelection(employee: Employee) {
-    const index = this.selectedEmployees.findIndex(e => e.id === employee.id);
-    if (index === -1) {
-      this.selectedEmployees.push(employee);
-    } else {
-      this.selectedEmployees.splice(index, 1);
     }
   }
 
