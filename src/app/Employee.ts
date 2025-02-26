@@ -2,7 +2,7 @@ import {Qualification} from "./Qualification";
 
 export class Employee
 {
-  constructor(public id            ?:             undefined,
+  constructor(public id            ?:                number,
               public lastName      ?:                string,
               public firstName     ?:                string,
               public street        ?:                string,
@@ -11,4 +11,5 @@ export class Employee
               public phone         ?:                string,
               public qualifications?:     Qualification[]) {
   }
+
 }

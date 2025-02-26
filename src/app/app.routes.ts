@@ -4,10 +4,9 @@ import { createAuthGuard, AuthGuardData } from 'keycloak-angular';
 import { MenuComponent} from "./menu-component/menu-component";
 import { inject } from '@angular/core';
 import { Router, UrlTree } from '@angular/router';
-import {EmployeesCreateComponent} from "./create-employees/employees-create.component";
+import {CreateEmployeesComponent} from "./create-employees/create-employees-component";
 import {EmployeeListComponent} from "./employee-list/employee-list.component";
 import {QualificationEditComponent} from "./qualification-edit/qualification-edit.component";
-import {QualificationCreateComponent} from "./qualification-create/qualification-create.component";
 
 
  /**
@@ -68,6 +67,8 @@ export const routes: Routes =
   { path: 'app-employee-list',        component: EmployeeListComponent,        canActivate: [canActivateAuthRole], data: { role: 'user' } },
   { path: 'app-qualification-edit',   component: QualificationEditComponent,   canActivate: [canActivateAuthRole], data: { role: 'user' } },
   { path: 'app-qualification-create', component: QualificationCreateComponent, canActivate: [canActivateAuthRole], data: { role: 'user' } },
+  { path: 'app-employee-edit'/*/:employeeID'*/,   component: EmployeeEditComponent,  canActivate: [canActivateAuthRole], data: { role: 'user' } },
+  { path: 'app-employee-edit/:id', component: EmployeeEditComponent,        canActivate: [canActivateAuthRole], data: { role: 'user' } },
   { path: '**',                       redirectTo: '/forbidden'                                                                           }
   ];
 

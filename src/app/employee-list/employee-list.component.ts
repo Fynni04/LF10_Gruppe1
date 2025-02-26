@@ -28,7 +28,7 @@ export class EmployeeListComponent {
         .set('Authorization', `Bearer ${this.keycloak.token}`)
     });
   }
-  deletEmployee(employeeID:any){
+  deleteEmployee(employeeID:any){
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/json')
       .set('Authorization', `Bearer ${this.keycloak.token}`);
@@ -46,7 +46,7 @@ export class EmployeeListComponent {
           error: (error) =>
           {
             console.error('Error deleting employee:', error);
-            alert('Fehler beim Löschen des Mitarbeiters!');
+            alert('Fehler beim Löschen des Mitarbeiters: '+employeeID+' !: ' + error);
           }
         }
       );
