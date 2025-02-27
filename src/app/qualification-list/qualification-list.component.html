@@ -1,16 +1,32 @@
-<h1>Qualification list</h1>
+<!---
+Qualification list</h1>
 <body>
   <div class="qualification-list">
     <table>
       @for(e of qualifications$ | async; track e.id) {
         <tr>
           <td>{{e.skill }} </td>
-          <td><button type="button" class="btn" (click)="deletQualification(e.id)">Delet</button></td>
+          <td><button type="button" class="btn" (click)="deletQualification(e.id)">Delete</button></td>
         </tr>
       }
     </table>
     <button type="button" class="back-btn" (click)="BackToMainPage()">Zurück</button>
   </div>
-</body>
+</body>--->
 
 
+<div class="qualification-list-container">
+  <h1>Qualifikation Liste</h1>
+  <ul>
+    <li *ngFor="let e of qualifications$ | async;">
+      <div class="qualification-info">
+        <span class="qualification-name">{{ e.skill }}</span>
+      </div>
+      <div class="button-group">
+        <button class="delete" (click)="deleteQualification(e.id)">Delete</button>
+        <button class="edit" [routerLink]="['/app-qualification-edit', e.id]">Edit</button>
+      </div>
+    </li>
+  </ul>
+  <button class="back-btn" (click)="BackToMainPage()">Zurück</button>
+</div>

@@ -1,51 +1,132 @@
+/* Globaler Body-Stil */
 body {
   font-family: Arial, sans-serif;
   background-color: #f8f9fa;
+  margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 30vh;
-  width: 100vh;
-  margin: 0;
+  height: 100vh;
 }
 
-.qualification-list {
+/* Container */
+.qualification-list-container {
   background-color: #d3d3d3;
   border: 1px solid #b0b0b0;
   border-radius: 8px;
-  width: 400px;
+  width: 600px;
   padding: 20px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.btn {
+/* Überschrift */
+.qualification-list-container h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 36px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Liste und Listenelemente */
+.qualification-list-container ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.qualification-list-container li {
+  background-color: #fff;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  padding: 15px;
+  margin-bottom: 10px;
+}
+
+/* Mitarbeiterinformationen */
+.qualification-info {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.qualification-info .qualification-name {
+  font-weight: bold;
+  font-size: 18px;
+  color: #333;
+}
+
+.qualification-info .qualification-address {
+  font-size: 14px;
+  color: #555;
+}
+/*
+/* Qualifikationen
+.qualifications {
+  margin-bottom: 10px;
+}
+
+.qualifications strong {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #333;
+}
+
+.qualifications ul {
+  list-style: disc;
+  margin: 0;
+  padding-left: 20px;
+}
+
+.qualifications li {
+  font-size: 14px;
+  color: #333;
+}
+*/
+/* Button-Gruppe */
+.button-group {
+  display: flex;
+  gap: 10px;
+}
+
+.button-group button {
   border: none;
   border-radius: 4px;
-  padding: 10px 15px;
+  padding: 8px 12px;
   cursor: pointer;
   font-weight: bold;
-  font-size: 14px;
   transition: opacity 0.3s ease;
 }
 
-.btn {
-  width: 100px;
-  background-color: #ff0000;
-  color: black;
+.button-group button:hover {
+  opacity: 0.8;
 }
 
-.back-btn {
-  border: none;
-  border-radius: 4px;
-  padding: 10px 15px;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 14px;
-  transition: opacity 0.3s ease;
+.button-group button.delete {
+  background-color: #d9534f;
+  color: white;
 }
 
+.button-group button.edit {
+  background-color: #5bc0de;
+  color: white;
+}
+
+/* Back-Button */
 .back-btn {
-  width: 100px;
+  margin-top: 20px;
+  width: 150px;
   background-color: #0056b3;
   color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: opacity 0.3s ease;
+}
+
+.back-btn:hover {
+  opacity: 0.8;
 }

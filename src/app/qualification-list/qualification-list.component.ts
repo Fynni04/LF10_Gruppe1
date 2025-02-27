@@ -4,11 +4,11 @@ import { Observable, of }           from "rxjs"                 ;
 import { HttpClient, HttpHeaders }  from "@angular/common/http" ;
 import { Qualification }            from "../Qualification"     ;
 import Keycloak                     from "keycloak-js"          ;
-import { Router }                   from "@angular/router"      ;
+import {Router, RouterLink} from "@angular/router"      ;
 
 @Component({
     selector:                   'app-qualification-list',
-    imports:                              [CommonModule],
+  imports: [CommonModule, RouterLink],
     templateUrl:   './qualification-list.component.html',
     styleUrl:       './qualification-list.component.css'
 })
@@ -29,7 +29,7 @@ export class QualificationListComponent {
     });
   }
 
-  deletQualification(qualificationID:any){
+  deleteQualification(qualificationID:any){
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/json')
       .set('Authorization', `Bearer ${this.keycloak.token}`);
