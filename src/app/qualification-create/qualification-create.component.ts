@@ -5,6 +5,7 @@ import {CommonModule} from "@angular/common";
 import {Employee} from "../Employee";
 import {FormsModule} from "@angular/forms";
 import {Router} from "@angular/router";
+import {Qualification} from "../Qualification";
 
 @Component({
   selector: 'app-qualification-create',
@@ -13,16 +14,14 @@ import {Router} from "@angular/router";
   styleUrl: './qualification-create.component.css'
 })
 export class QualificationCreateComponent {
-  newSkill: string = '';
+  skill             = '' ;
   employees: Employee[] = []; // Liste der Mitarbeiter
   selectedEmployees: Employee[] = []; // Ausgewählte Mitarbeiter (gesamtes Objekt)
-  private readonly keycloak = inject(Keycloak);
-  private readonly http: HttpClient;
 
-  constructor(http: HttpClient, private router: Router) {
-    this.http = http;
-    this.fetchEmployees(); // Lade die Mitarbeiter beim Initialisieren der Komponente
+  constructor(private http: HttpClient, private router: Router) {
+    this.fetchEmployees();
   }
+  private readonly keycloak = inject(Keycloak);
 
   /**
    * Lädt die Mitarbeiterliste vom Server.
@@ -38,10 +37,10 @@ export class QualificationCreateComponent {
       });
   }
 
-
   isEmployeeSelected(employee: Employee): boolean {
     return this.selectedEmployees.some(e => e.id === employee.id);
   }
+
   /**
    * Fügt oder entfernt Mitarbeiter aus der Auswahl.
    */
@@ -54,46 +53,61 @@ export class QualificationCreateComponent {
     }
   }
 
-  /**
-   * Speichert die neue Qualifikation mit den ausgewählten Mitarbeitern.
-   */
   saveQualification() {
-    if (!this.newSkill.trim()) { // 👈 Validierung für beide Felder
-      alert('Bitte fülle alle Pflichtfelder aus!');
-      return;
-    }
-
-    // Korrektur 1: Extrahiere nur die IDs
-    const qualificationData = {
-      skill: this.newSkill.trim(), // 👈 Hinzugefügt
-      employeeIds: this.selectedEmployees.map(e => e.id)
-    };
+    const newQualification: Qualification = new Qualification(
+      undefined             ,
+      this.skill
+    );
 
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/json')
       .set('Authorization', `Bearer ${this.keycloak.token}`);
 
-    this.http.post('http://localhost:8089/qualifications', qualificationData, { headers })
-      .subscribe({
-        next: () => {
-          alert('Qualifikation erfolgreich erstellt!');
-          this.resetForm();
-        },
-        error: (error) => {
-          // Verbesserte Fehlermeldung mit Backend-Response
-          console.error('Fehler:', error);
-          const errorMsg = error.error?.message || 'Unbekannter Fehler';
-          alert(`Fehler beim Speichern: ${errorMsg}`);  // 👈 Detaillierte Meldung
+    this.http.post<Qualification>( 'http://localhost:8089/qualifications', newQualification, { headers } )
+      .subscribe
+      (
+        {
+          next: (response) =>
+          {
+            console.log('Qualification successfully created:', response);
+            alert('Qualifikation erfolgreich mit der ID: "'+ response.id +'" erstellt!');
+
+            if(response.id) {
+              alert('Wird hinzugefügt'+ response);
+              this.linkEmployeesToQualification(response);
+            }
+
+            this.resetForm();
+          },
+          error: (error) =>
+          {
+            console.error('Error creating Qualification:', error);
+            alert('Fehler beim Erstellen des Qualifikation!');
+          }
         }
-      });
+      );
   }
 
+  linkEmployeesToQualification(newQualification: Qualification) {
+    alert('Wird hinzugefügt1'+ newQualification.skill);
+    const headers = new HttpHeaders()
+      .set('Authorization', `Bearer ${this.keycloak.token}`);
+
+    this.selectedEmployees.forEach(employee => {
+      alert('Wird hinzugefügter MitarbeiterId: ' + employee.id);
+      this.http.post(`http://localhost:8089/employees/${employee.id}/qualifications/`, newQualification, { headers })
+        .subscribe({
+          next: () => this.router.navigate(['/']),
+          error: (err) => console.error('Error updating employee:', err)
+        });
+    });
+  }
   /**
    * Setzt das Formular zurück.
    */
   resetForm() {
+    this.skill = '';
     this.selectedEmployees = [];
-    this.newSkill = '';
   }
 
   BackToMainPage() {

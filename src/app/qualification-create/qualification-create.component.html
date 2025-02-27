@@ -1,8 +1,8 @@
-<body>
+<!---<body>
   <div class="qualification-container">
     <h2>Qualifikation erstellen</h2>
 
-    <!-- Eingabefelder für Skill und Name -->
+
     <div class="form-group">
       <label for="qualification-skill">Skill* (Pflichtfeld):</label>
       <input
@@ -13,7 +13,7 @@
       >
     </div>
 
-    <!-- Tabelle mit Mitarbeitern -->
+
     <div class="employee-list">
       <table>
         <thead>
@@ -37,7 +37,7 @@
       </table>
     </div>
 
-    <!-- Buttons -->
+
     <div class="button-group">
       <button type="button" class="back-btn" (click)="BackToMainPage()">Zurück</button>
       <button type="button" class="reset-btn" (click)="resetForm()">Abbrechen</button>
@@ -45,4 +45,53 @@
     </div>
 
   </div>
+</body>--->
+<!DOCTYPE html>
+<body>
+<div class="qualification-create">
+  <link rel="stylesheet" href="qualification-create.component.css">
+
+  <form (ngSubmit)="saveQualification()">
+    <div class="heading">
+      <h2>Qualifikation Bearbeiten</h2>
+    </div>
+
+    <div class="form-section">
+      <label for="qualifikation">Qualifikationsname:</label>
+      <input id="qualifikation" type="text" placeholder="Qualifikationsname eingeben"
+             [(ngModel)]="skill" name="skill" required />
+    </div>
+
+    <div class="buttons">
+      <button type="button" class="back-btn" (click)="BackToMainPage()">Zurück</button>
+      <button type="button" class="reset-btn" (click)="resetForm()">Reset</button>
+      <button type="submit" class="save-btn">Qualifikatin hinzufügen</button>
+    </div>
+
+  </form>
+</div>
+
+<div class="employee-list">
+  <table>
+    <thead>
+    <tr>
+      <th>Mitarbeiter</th>
+      <th>✔</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let employee of employees">
+      <td>{{ employee?.firstName + " " + employee?.lastName }}</td>
+      <td>
+        <input
+          type="checkbox"
+          [checked]="isEmployeeSelected(employee)"
+          (change)="toggleEmployeeSelection(employee)"
+        />
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
 </body>
+
