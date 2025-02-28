@@ -89,12 +89,10 @@ export class QualificationCreateComponent {
   }
 
   linkEmployeesToQualification(newQualification: Qualification) {
-    alert('Wird hinzugefügt1'+ newQualification.skill);
     const headers = new HttpHeaders()
       .set('Authorization', `Bearer ${this.keycloak.token}`);
 
     this.selectedEmployees.forEach(employee => {
-      alert('Wird hinzugefügter MitarbeiterId: ' + employee.id);
       this.http.post(`http://localhost:8089/employees/${employee.id}/qualifications/`, newQualification, { headers })
         .subscribe({
           next: () => this.router.navigate(['/']),

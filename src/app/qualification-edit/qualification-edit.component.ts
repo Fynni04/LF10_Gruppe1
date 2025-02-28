@@ -1,11 +1,11 @@
-import { Component, inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
-import { Qualification } from '../Qualification';
-import Keycloak from 'keycloak-js';
-import {Employee} from "../Employee";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Employee } from "../Employee";
+import { FormsModule } from "@angular/forms";
+import { Qualification } from "../Qualification";
+import { ActivatedRoute, Router } from '@angular/router';
+import Keycloak from "keycloak-js";
 
 @Component({
   selector: 'app-qualification-edit',
@@ -13,52 +13,42 @@ import {Employee} from "../Employee";
   templateUrl: './qualification-edit.component.html',
   styleUrl: './qualification-edit.component.css'
 })
-export class QualificationEditComponent {
-  Id: number | undefined;
-  Skill = ''; // Skill der Qualifikation
-  EditSkill = '';
-  // qualificationId: number | undefined; // ID der Qualifikation (falls vorhanden)
+
+export class QualificationEditComponent implements OnInit {
   private readonly keycloak = inject(Keycloak);
-  employees: Employee[] = []; // Liste der Mitarbeiter
-  selectedEmployees: Employee[] = []; // Ausgewählte Mitarbeiter (gesamtes Objekt)
-  qualifications: Qualification [] = [];
-  selectedQualifications: Qualification[] = [];
+  private route = inject(ActivatedRoute);
+  private http = inject(HttpClient);
+  private router = inject(Router);
 
-  constructor(private http: HttpClient, private router: Router) {
-    this.http = http;
-    this.fetchEmployees()
-    this.fetchQualifications()
-  }
+  qualificationId: number | null = null;
+  qualificationSkill = ''; // Skill der Qualifikation
+  selectedEmployees: Employee[] = [];
+  employees: Employee[] = [];
 
-  fetchQualifications() {
-    const headers = new HttpHeaders()
-      .set('Authorization', `Bearer ${this.keycloak.token}`);
 
-    this.http.get<Qualification[]>('http://localhost:8089/qualifications', { headers })
-      .subscribe({
-        next: (data) => { this.qualifications = data; },
-        error: (error) => { console.error('Fehler beim Laden der Qualifikationen:', error); }
-      });
-  }
-
-  /**
-   * Prüft, ob eine Qualifikation bereits ausgewählt wurde.
-   */
-  isQualificationSelected(qualification: Qualification): boolean {
-    return this.selectedQualifications.some(q => q.skill === qualification.skill);
-  }
-
-  /**
-   * Fügt oder entfernt Qualifikationen aus der Auswahl.
-   */
-  toggleQualificationSelection(qualification: Qualification) {
-    const index = this.selectedQualifications.findIndex(q => q.skill === qualification.skill);
-    if (index === -1) {
-      this.selectedQualifications.push(qualification);
-    } else {
-      this.selectedQualifications.splice(index, 1);
+  ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id) {
+      this.qualificationId = +id; // Convert string to number
+      this.fetchData(this.qualificationId);
+      this.fetchEmployees();
     }
   }
+
+  fetchData(qualificationId: number): void {
+    this.http.get<Qualification>(`http://localhost:8089/qualifications/${qualificationId}`, {
+      headers: new HttpHeaders()
+        .set('Content-Type', 'application/json')
+        .set('Authorization', `Bearer ${this.keycloak.token}`)
+    }).subscribe({
+      next: (qualification) => {
+        this.qualificationSkill = qualification.skill || '';
+      },
+      error: (err) => console.error('Error fetching employee:', err)
+    });
+  }
+
+
 
   fetchEmployees() {
     const headers = new HttpHeaders()
@@ -87,45 +77,60 @@ export class QualificationEditComponent {
     }
   }
 
-  /**
-   * Speichert die bearbeitete Qualifikation.
-   */
-  saveQualification() {
-    if (!this.Skill.trim()) {
-      alert('Bitte einen Skill eingeben!');
+
+
+
+    saveQualification(): void {
+      if (!this.qualificationId) {
+      console.error('No qualification ID available');
       return;
     }
 
-    const updatedQualification = new Qualification(this.Id, this.Skill);
+    const updatedQualification = new Qualification(
+        this.qualificationId,
+        this.qualificationSkill
+      );
+
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/json')
       .set('Authorization', `Bearer ${this.keycloak.token}`);
 
-    this.http.put<Qualification>(`http://localhost:8089/qualifications`, updatedQualification, { headers })
-      .subscribe({
-        next: () => {
-          alert('Qualifikation erfolgreich aktualisiert!');
-          this.resetForm();
-        },
-        error: (error) => {
-          console.error('Fehler beim Aktualisieren:', error);
-          alert('Fehler beim Aktualisieren der Qualifikation!');
-        }
-      });
+      this.http.put(`http://localhost:8089/qualifications/${this.qualificationId}`, updatedQualification, { headers })
+        .subscribe({
+          next: () =>{
+            this.linkEmployeesToQualification(updatedQualification)
+            this.router.navigate(['/'])
+          } , // Adjust the route as needed
+          error: (err) => console.error('Error updating qualification:', err)
+        });
+    }
+
+  linkEmployeesToQualification(newQualification: Qualification) {
+    const headers = new HttpHeaders()
+      .set('Authorization', `Bearer ${this.keycloak.token}`);
+
+    this.selectedEmployees.forEach(employee => {
+      this.http.post(`http://localhost:8089/employees/${employee.id}/qualifications/`, newQualification, { headers })
+        .subscribe({
+          next: () => this.router.navigate(['/']),
+          error: (err) => console.error('Error updating employee:', err)
+        });
+    });
   }
+
 
   /**
    * Setzt das Formular zurück.
    */
   resetForm() {
-    this.Skill = '';
-    this.EditSkill = '';
+    this.qualificationSkill = '';
   }
 
-  /**
-   * Navigiert zurück zur Hauptseite.
-   */
+  goBack(): void {
+    this.router.navigate(['/app-qualification-list']); // Adjust the route as needed
+  }
+
   BackToMainPage() {
-    this.router.navigate(['/app-menu']);
+    this.router.navigate(['/app-menu'])
   }
 }
