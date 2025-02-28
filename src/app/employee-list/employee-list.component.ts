@@ -3,12 +3,13 @@ import { CommonModule } from '@angular/common';
 import {Observable, of} from "rxjs";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Employee} from "../Employee";
+import {Qualification} from "../Qualification";
 import Keycloak from "keycloak-js";
 import {Router, RouterLink} from "@angular/router";
 
 @Component({
     selector: 'app-employee-list',
-  imports: [CommonModule, RouterLink],
+    imports: [CommonModule, RouterLink],
     templateUrl: './employee-list.component.html',
     styleUrl: './employee-list.component.css'
 })
@@ -22,15 +23,24 @@ export class EmployeeListComponent {
   }
 
   fetchData() {
-    this.employees$ = this.http.get<Employee[]>('http://localhost:8089/employees', {
-      headers: new HttpHeaders()
-        .set('Content-Type', 'application/json')
-        .set('Authorization', `Bearer ${this.keycloak.token}`)
-    });
+    // this.employees$ = this.http.get<Employee[]>('http://localhost:8089/employees', {
+    //   headers: new HttpHeaders()
+    //     .set('Content-Type', 'application/json')
+    //     .set('Authorization', `Bearer ${this.keycloak.token}`)
+    // });
+    const headers = new HttpHeaders()
+      .set('Authorization', `Bearer ${this.keycloak.token}`);
 
+    this.http.get<Employee[]>('http://localhost:8089/employees', { headers })
+      .subscribe(employees => {
+        console.log('Employees geladen:', employees);
+        this.employees$ = of(employees);
+      });
+  /*
     this.employees$.subscribe(employees => {
-      console.log('Employees:', employees); // Überprüfen Sie die Backend-Antwort
-    });
+      console.log('Employees:', employees);
+
+    });*/
   }
 
   deleteEmployee(employeeID:any){

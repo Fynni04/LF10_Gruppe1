@@ -51,7 +51,7 @@ export class EmployeeEditComponent implements OnInit {
         this.employeePostcode = employee.postcode || '';
         this.employeeCity = employee.city || '';
         this.employeePhone = employee.phone || '';
-        this.qualifications = employee.qualifications || [];
+        this.qualifications = employee.skillSet || [];
       },
       error: (err) => console.error('Error fetching employee:', err)
     });

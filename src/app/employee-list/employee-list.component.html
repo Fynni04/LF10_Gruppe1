@@ -8,14 +8,14 @@
       </div>
       <div class="qualifications">
       <strong>Qualifikationen:</strong>
-      <ul *ngIf="e.qualifications && e.qualifications.length > 0; else noQualifications">
-        <li *ngFor="let qual of e.qualifications">
-          {{ qual.skill }}
-        </li>
-      </ul>
-      <ng-template #noQualifications>
-        <p>Keine Qualifikationen vorhanden.</p>
-      </ng-template>
+        <ul *ngIf="e.skillSet && e.skillSet.length > 0; else noQualifications">
+          <li *ngFor="let qual of e.skillSet">
+            {{ qual.skill }}
+          </li>
+        </ul>
+        <ng-template #noQualifications>
+          <p>Keine Qualifikationen vorhanden.</p>
+        </ng-template>
     </div>
       <div class="button-group">
         <button class="delete" (click)="deleteEmployee(e.id)">Delete</button>
