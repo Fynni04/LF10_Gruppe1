@@ -64,16 +64,17 @@ export const canActivateAuthRole = createAuthGuard(isAccessAllowed);
 
 export const routes: Routes =
   [
-  { path: '', redirectTo: '/app-menu', pathMatch: 'full' },
-  { path: 'app-menu',                 component: MenuComponent,                canActivate: [canActivateAuthRole], data: { role: 'user' } },
-  { path: 'create-employees',         component: EmployeesCreateComponent,     canActivate: [canActivateAuthRole], data: { role: 'user' } },
-  { path: 'app-employee-list',        component: EmployeeListComponent,        canActivate: [canActivateAuthRole], data: { role: 'user' } },
-  { path: 'app-qualification-edit',   component: QualificationEditComponent,   canActivate: [canActivateAuthRole], data: { role: 'user' } },
-  { path: 'app-qualification-create', component: QualificationCreateComponent, canActivate: [canActivateAuthRole], data: { role: 'user' } },
-  { path: 'app-employee-edit'     ,   component: EmployeeEditComponent,        canActivate: [canActivateAuthRole], data: { role: 'user' } },
-  { path: 'app-employee-edit/:id',    component: EmployeeEditComponent,        canActivate: [canActivateAuthRole], data: { role: 'user' } },
-  { path: 'app-qualification-list',   component: QualificationListComponent,   canActivate: [canActivateAuthRole], data: { role: 'user' } },
-  { path: '**',                       redirectTo: '/forbidden'                                                                           }
+    { path: '', redirectTo: '/app-menu', pathMatch: 'full' },
+    { path: 'app-menu',                   component: MenuComponent,                canActivate: [canActivateAuthRole], data: { role: 'user' } },
+    { path: 'create-employees',           component: EmployeesCreateComponent,     canActivate: [canActivateAuthRole], data: { role: 'user' } },
+    { path: 'app-employee-list',          component: EmployeeListComponent,        canActivate: [canActivateAuthRole], data: { role: 'user' } },
+    { path: 'app-employee-edit'     ,     component: EmployeeEditComponent,        canActivate: [canActivateAuthRole], data: { role: 'user' } },
+    { path: 'app-employee-edit/:id',      component: EmployeeEditComponent,        canActivate: [canActivateAuthRole], data: { role: 'user' } },
+    { path: 'app-qualification-create',   component: QualificationCreateComponent, canActivate: [canActivateAuthRole], data: { role: 'user' } },
+    { path: 'app-qualification-list',     component: QualificationListComponent,   canActivate: [canActivateAuthRole], data: { role: 'user' } },
+    { path: 'app-qualification-edit',     component: QualificationEditComponent,   canActivate: [canActivateAuthRole], data: { role: 'user' } },
+    { path: 'app-qualification-edit/:id', component: QualificationEditComponent,   canActivate: [canActivateAuthRole], data: { role: 'user' } },
+    { path: '**',                       redirectTo: '/forbidden'                                                                           }
   ];
 
 @NgModule({
